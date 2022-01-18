@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Starting big ass tiles"
+
+xvfb-run /home/pi/big-ass-tiles/BigAssTilesPi/main
