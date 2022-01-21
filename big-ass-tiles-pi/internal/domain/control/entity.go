@@ -67,9 +67,6 @@ func (c *controller) shutdown() {
 func (c *controller) setInputValue(inputNumber int, inputValue float64) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
-
-	log.Println(fmt.Sprintf("Input: %d; Value: %f", inputNumber, inputValue))
-	return
 	input := c.inputStates[inputNumber]
 	oldVal := input.InputValue
 	if oldVal-c.inputTolerance < inputValue && oldVal+c.inputTolerance > inputValue {

@@ -40,7 +40,7 @@ func (t testAdcConfig) GetInputPins() []domain.InputPin {
 }
 
 func (t testAdcConfig) GetReadFrequency() physic.Frequency {
-	return physic.Hertz * 10
+	return physic.Hertz * 1
 }
 
 func (t testAdcConfig) GetReadVoltage() physic.ElectricPotential {

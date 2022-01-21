@@ -30,6 +30,8 @@ func newAdcController(c *controller, cfg AdcConfig) (*adcController, error) {
 	for i, inputPin := range inputPins {
 		inputStates[i].InputType = inputPin.InputType
 	}
+	c.inputStates = inputStates
+
 	if _, err := host.Init(); err != nil {
 		return nil, err
 	}
@@ -174,5 +176,6 @@ func (a *adcController) createAdcChannel(
 }
 
 func (a *adcController) getValueFromAnalog(sample analog.Sample) float64 {
+	log.Println(sample)
 	return 1.0
 }
