@@ -44,7 +44,7 @@ func (t testAdcConfig) GetReadFrequency() physic.Frequency {
 }
 
 func (t testAdcConfig) GetReadVoltage() physic.ElectricPotential {
-	return physic.Volt * 3
+	return physic.MilliVolt * 3300
 }
 
 type testAdcBus struct{}

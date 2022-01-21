@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cmd/testAdc/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/adc.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/util.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/util/merge.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/install.md" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/install.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/application/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/application/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/gui.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/gui.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/testAdc/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/testAdc/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
