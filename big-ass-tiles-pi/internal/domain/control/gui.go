@@ -19,7 +19,16 @@ type guiController struct {
 
 var _ controllerImpl = (*guiController)(nil)
 
-func newGuiController(c *controller) *guiController {
+func newGuiController(c *controller, cfg WindowConfig) *guiController {
+
+	inputTypes := cfg.GetInputTypes()
+	inputStates := make([]domain.InputState, len(inputTypes))
+	for i, inputType := range inputTypes {
+		inputStates[i].InputType = inputType
+	}
+
+	c.inputStates = inputStates
+
 	g := &guiController{
 		controller: c,
 		w:          nil,
@@ -55,22 +64,16 @@ func (g *guiController) createNewWindow() {
 }
 
 func (g *guiController) newSlider(sliderPosition int) fyne.CanvasObject {
-	input := g.inputStates[sliderPosition]
 	f := 0.0
 	data := binding.BindFloat(&f)
 	listener := binding.NewDataListener(func() {
-		g.controller.mu.Lock()
-		defer g.controller.mu.Unlock()
 		v := f / 255
-		g.inputStates[sliderPosition].InputValue = v
-		g.bus.HandleControlInputChange(&domain.InputState{
-			InputType:  input.InputType,
-			InputValue: v,
-		})
+		g.setInputValue(sliderPosition, v)
 	})
 	data.AddListener(listener)
 	slider := widget.NewSliderWithData(0, 255, data)
-	label := widget.NewLabel(string(input.InputType))
+	inputName := g.inputStates[sliderPosition].InputType
+	label := widget.NewLabel(string(inputName))
 	return container.NewVBox(
 		label,
 		slider,

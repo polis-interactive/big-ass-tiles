@@ -30,7 +30,7 @@ func NewService(cfg Config, bus Bus) (*service, error) {
 	}, nil
 }
 
-func (s service) Startup() {
+func (s *service) Startup() {
 	log.Println("ControlService Startup: starting")
 	s.mu.Lock()
 	defer s.mu.Unlock()
@@ -39,7 +39,7 @@ func (s service) Startup() {
 	}
 }
 
-func (s service) Shutdown() {
+func (s *service) Shutdown() {
 	log.Println("ControlService Shutdown: shutting down")
 	s.mu.Lock()
 	defer s.mu.Unlock()
@@ -48,7 +48,7 @@ func (s service) Shutdown() {
 	}
 }
 
-func (s service) GetControllerStates() []domain.InputState {
+func (s *service) GetControllerStates() []domain.InputState {
 	s.controller.mu.RLock()
 	defer s.controller.mu.RUnlock()
 	inputStates := make([]domain.InputState, len(s.controller.inputStates))

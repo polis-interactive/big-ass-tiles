@@ -5,41 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cmd/runWindows/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/testGo/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/testGui/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/application/application.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/application/bus.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/application/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/bus.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/entity.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/gui.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/graphics/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/graphics/entity.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/graphics/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/graphics/snake.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/render/bus.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/render/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/render/entity.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/render/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/render/terminal.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/render/window.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/render/ws2812.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/types.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/infrastructure/bus/bus.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/infrastructure/bus/control.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/infrastructure/bus/render.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/util/color.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/util/grid.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/util/point.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/util/ws2811.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BigAssTilesPi.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/testAdc/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/domain/control/adc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/domain/control/util.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/util/merge.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/install.md" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/install.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/application/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/application/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/control/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/control/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/control/gui.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/gui.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/control/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/types.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

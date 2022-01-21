@@ -13,36 +13,33 @@ type controllerImpl interface {
 }
 
 type controller struct {
-	impl        controllerImpl
-	bus         Bus
-	inputStates []domain.InputState
-	mu          *sync.RWMutex
-	wg          *sync.WaitGroup
-	shutdowns   chan struct{}
+	impl           controllerImpl
+	bus            Bus
+	inputStates    []domain.InputState
+	inputTolerance float64
+	mu             *sync.RWMutex
+	wg             *sync.WaitGroup
+	shutdowns      chan struct{}
 }
 
 func newController(cfg Config, bus Bus) (*controller, error) {
 
-	inputTypes := cfg.GetInputTypes()
-	inputStates := make([]domain.InputState, len(inputTypes))
-	for i, inputType := range inputTypes {
-		inputStates[i].InputType = inputType
-	}
-
 	base := &controller{
-		bus:         bus,
-		inputStates: inputStates,
-		mu:          &sync.RWMutex{},
-		wg:          &sync.WaitGroup{},
+		bus:            bus,
+		inputTolerance: cfg.GetInputTolerance(),
+		mu:             &sync.RWMutex{},
+		wg:             &sync.WaitGroup{},
 	}
 
+	var err error = nil
 	switch cfg.GetControlType() {
 	case domain.ControlTypes.GUI:
-		base.impl = newGuiController(base)
-	case domain.ControlTypes.PHYSICAL:
+		base.impl = newGuiController(base, cfg)
+	case domain.ControlTypes.ADC:
+		base.impl, err = newAdcController(base, cfg)
 	}
 
-	return base, nil
+	return base, err
 }
 
 func (c *controller) startup() {
@@ -65,4 +62,20 @@ func (c *controller) shutdown() {
 		c.shutdowns = nil
 	}
 	log.Println(fmt.Sprintf("%s, shutdown: done", reflect.TypeOf(c.impl)))
+}
+
+func (c *controller) setInputValue(inputNumber int, inputValue float64) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	input := c.inputStates[inputNumber]
+	oldVal := input.InputValue
+	if oldVal-c.inputTolerance < inputValue && oldVal+c.inputTolerance > inputValue {
+		return
+	}
+	input.InputValue = inputValue
+	c.bus.HandleControlInputChange(&domain.InputState{
+		InputType:  input.InputType,
+		InputValue: inputValue,
+	})
 }

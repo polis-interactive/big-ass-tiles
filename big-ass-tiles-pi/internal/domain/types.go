@@ -3,6 +3,7 @@ package domain
 import (
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util"
 	"image/color"
+	"periph.io/x/periph/experimental/devices/ads1x15"
 )
 
 type RenderType string
@@ -31,16 +32,16 @@ type RenderService interface {
 type ControlType string
 
 const (
-	guiControl      ControlType = "GUI_CONTROL"
-	physicalControl ControlType = "PHYSICAL_CONTROL"
+	guiControl ControlType = "GUI_CONTROL"
+	adcControl ControlType = "ADC_CONTROL"
 )
 
 var ControlTypes = struct {
-	GUI      ControlType
-	PHYSICAL ControlType
+	GUI ControlType
+	ADC ControlType
 }{
-	GUI:      guiControl,
-	PHYSICAL: physicalControl,
+	GUI: guiControl,
+	ADC: adcControl,
 }
 
 type ControlService interface {
@@ -68,6 +69,16 @@ var InputTypes = struct {
 	ATTACK:     attackInput,
 	SPEED:      speedInput,
 	DECAY:      decayInput,
+}
+
+type InputPin struct {
+	InputType InputType
+	Pin       ads1x15.Channel
+}
+
+type InputPair struct {
+	InputNumber int
+	InputValue  float64
 }
 
 type InputState struct {

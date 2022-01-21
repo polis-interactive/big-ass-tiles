@@ -3,6 +3,7 @@ package application
 import (
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/domain"
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util"
+	"periph.io/x/periph/conn/physic"
 	"time"
 )
 
@@ -38,14 +39,6 @@ func (r *RenderConfig) GetRenderFrequency() time.Duration {
 	return r.RenderFrequency
 }
 
-type ControlConfig struct {
-	ControlType domain.ControlType
-}
-
-func (c *ControlConfig) GetControlType() domain.ControlType {
-	return c.ControlType
-}
-
 type WindowConfig struct {
 	TileSize   int
 	InputTypes []domain.InputType
@@ -57,6 +50,36 @@ func (w *WindowConfig) GetTileSize() int {
 
 func (w *WindowConfig) GetInputTypes() []domain.InputType {
 	return w.InputTypes
+}
+
+type AdcConfig struct {
+	InputPins     []domain.InputPin
+	ReadFrequency physic.Frequency
+	ReadVoltage   physic.ElectricPotential
+}
+
+func (a *AdcConfig) GetInputPins() []domain.InputPin {
+	return a.InputPins
+}
+
+func (a *AdcConfig) GetReadFrequency() physic.Frequency {
+	return a.ReadFrequency
+}
+func (a *AdcConfig) GetReadVoltage() physic.ElectricPotential {
+	return a.ReadVoltage
+}
+
+type ControlConfig struct {
+	ControlType    domain.ControlType
+	InputTolerance float64
+}
+
+func (c *ControlConfig) GetControlType() domain.ControlType {
+	return c.ControlType
+}
+
+func (c *ControlConfig) GetInputTolerance() float64 {
+	return c.InputTolerance
 }
 
 type GraphicsConfig struct {
@@ -71,6 +94,7 @@ type Config struct {
 	*RenderConfig
 	*Ws2812Config
 	*WindowConfig
+	*AdcConfig
 	*ControlConfig
 	*GraphicsConfig
 	GridDefinition util.GridDefinition
