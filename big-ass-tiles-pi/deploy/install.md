@@ -2,7 +2,9 @@
 ## Pi Install
 
 - Configure Pi
-  - 
+  - enable i2c
+  - change hostname
+  - chane nymea to always start
 - Install libraries
   - vim git tmux libx11-dev xvfb libgl1-mesa-dev cmake xorg-dev
 - Install Go
