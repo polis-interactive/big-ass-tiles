@@ -15,7 +15,7 @@ import (
 type testAdcConfig struct{}
 
 func (t testAdcConfig) GetInputTolerance() float64 {
-	return 0.004
+	return 0.001
 }
 
 var _ control.Config = (*testAdcConfig)(nil)
@@ -40,7 +40,7 @@ func (t testAdcConfig) GetInputPins() []domain.InputPin {
 }
 
 func (t testAdcConfig) GetReadFrequency() physic.Frequency {
-	return physic.Hertz * 1
+	return physic.Hertz * 20
 }
 
 func (t testAdcConfig) GetReadVoltage() physic.ElectricPotential {
