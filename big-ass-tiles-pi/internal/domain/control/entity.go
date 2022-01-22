@@ -69,7 +69,9 @@ func (c *controller) setInputValue(inputNumber int, inputValue float64) {
 	defer c.mu.Unlock()
 	input := c.inputStates[inputNumber]
 	oldVal := input.InputValue
-	if oldVal-c.inputTolerance < inputValue && oldVal+c.inputTolerance > inputValue {
+	positiveDiff := oldVal + c.inputTolerance
+	negativeBound := oldVal - c.inputTolerance
+	if positiveDiff > inputValue && inputValue < negativeBound {
 		return
 	}
 	input.InputValue = inputValue
