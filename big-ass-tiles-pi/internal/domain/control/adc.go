@@ -176,6 +176,5 @@ func (a *adcController) createAdcChannel(
 }
 
 func (a *adcController) getValueFromAnalog(sample analog.Sample) float64 {
-	log.Println(sample)
-	return 1.0
+	return float64(sample.V / a.volt)
 }
