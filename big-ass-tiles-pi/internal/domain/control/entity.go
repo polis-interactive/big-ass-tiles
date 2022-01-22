@@ -71,7 +71,8 @@ func (c *controller) setInputValue(inputNumber int, inputValue float64) {
 	oldVal := input.InputValue
 	positiveDiff := oldVal + c.inputTolerance
 	negativeBound := oldVal - c.inputTolerance
-	log.Println(positiveDiff, inputValue, negativeBound)
+	log.Println(positiveDiff, oldVal, negativeBound)
+	log.Println(inputValue)
 	if positiveDiff > inputValue && inputValue < negativeBound {
 		return
 	}
