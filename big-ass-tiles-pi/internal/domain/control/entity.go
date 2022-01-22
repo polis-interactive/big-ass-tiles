@@ -67,18 +67,15 @@ func (c *controller) shutdown() {
 func (c *controller) setInputValue(inputNumber int, inputValue float64) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	input := c.inputStates[inputNumber]
-	oldVal := input.InputValue
+	oldVal := c.inputStates[inputNumber].InputValue
 	positiveDiff := oldVal + c.inputTolerance
 	negativeBound := oldVal - c.inputTolerance
-	log.Println(positiveDiff, oldVal, negativeBound)
-	log.Println(inputValue)
 	if positiveDiff > inputValue && inputValue < negativeBound {
 		return
 	}
-	input.InputValue = inputValue
+	c.inputStates[inputNumber].InputValue = inputValue
 	c.bus.HandleControlInputChange(&domain.InputState{
-		InputType:  input.InputType,
+		InputType:  c.inputStates[inputNumber].InputType,
 		InputValue: inputValue,
 	})
 }
