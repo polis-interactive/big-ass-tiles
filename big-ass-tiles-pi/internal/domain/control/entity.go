@@ -70,7 +70,7 @@ func (c *controller) setInputValue(inputNumber int, inputValue float64) {
 	oldVal := c.inputStates[inputNumber].InputValue
 	positiveDiff := oldVal + c.inputTolerance
 	negativeBound := oldVal - c.inputTolerance
-	if positiveDiff > inputValue && inputValue < negativeBound {
+	if positiveDiff > inputValue && inputValue > negativeBound {
 		return
 	}
 	c.inputStates[inputNumber].InputValue = inputValue

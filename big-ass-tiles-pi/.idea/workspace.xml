@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/testAdc/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/testAdc/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/domain/control/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/entity.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
