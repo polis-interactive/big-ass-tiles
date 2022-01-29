@@ -83,7 +83,7 @@ func (t *testAdcBus) HandleControlInputChange(state *domain.InputState) {
 		t.minMaxState[ip].minValue = iv
 		log.Println(fmt.Sprintf("%s:  new min %f", state.InputType, state.InputValue))
 	}
-	if t.minMaxState[ip].maxValue > iv {
+	if t.minMaxState[ip].maxValue < iv {
 		t.minMaxState[ip].maxValue = iv
 		log.Println(fmt.Sprintf("%s:  new max %f", state.InputType, state.InputValue))
 	}
