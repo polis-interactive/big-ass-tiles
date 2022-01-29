@@ -80,7 +80,7 @@ func max(i int, j int) int {
 	}
 }
 
-func (t testRenderBus) GetGridColorsNumber() [][]uint32 {
+func (t *testRenderBus) GetGridColorsNumber() [][]uint32 {
 	for i := 0; i < 11; i++ {
 		for j := 0; j < 3; j++ {
 			position := t.increment + i + 10*j%256
