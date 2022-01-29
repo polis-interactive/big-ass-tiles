@@ -71,12 +71,14 @@ func (r *ws2812Render) generateLeds() {
 		}
 	}
 
-	ledsPerScoot := r.baseRender.grid.LedPerScoot
 	ledsPerRow := columns * ledsPerCell
+	ledsPerColumnScoot := r.baseRender.grid.LedPerScoot
+	ledsPerRowScoot := ledsPerColumnScoot * columns
 	for i := 0; i < ledCount; i++ {
 		row := int(float64(i) / float64(ledsPerRow))
-		isOddRowScoot := int(math.Floor(float64(i)/float64(ledsPerCell)))%2 == 1
-		nominalColumn := int(math.Floor(float64(i)/float64(ledsPerScoot))) % columns
+		isOddRowScoot := int(math.Floor(float64(i)/float64(ledsPerRowScoot)))%2 == 1
+		nominalColumn := int(math.Floor(float64(i)/float64(ledsPerColumnScoot))) % columns
+
 		var actualColumn int
 		if isOddRowScoot {
 			actualColumn = columns - nominalColumn - 1
