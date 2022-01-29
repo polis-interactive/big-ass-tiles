@@ -11,7 +11,6 @@ type Ws2812Config struct {
 	GpioPin   util.GpioPinType
 	StripType util.StripType
 	Gamma     float32
-	LedCount  uint32
 }
 
 func (w *Ws2812Config) GetGpioPin() util.GpioPinType {
