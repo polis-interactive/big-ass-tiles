@@ -2,4 +2,4 @@
 
 echo "Starting big ass tiles"
 
-xvfb-run /home/pi/big-ass-tiles/BigAssTilesPi/main
+/home/pi/big-ass-tiles/big-ass-tiles-pi/main

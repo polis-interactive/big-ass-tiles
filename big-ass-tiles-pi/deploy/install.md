@@ -19,4 +19,6 @@
   - sudo go build ./cmd/runApplication/main.go
 - Make Service
   - https://superuser.com/questions/544399/how-do-you-make-a-systemd-service-as-the-last-service-on-boot
-  - Remove nymea from target graphical to target big_ass_tiles, resymlink
+  - Remove nymea (/lib/systemd/system/nymea) from target graphical to target 
+  (/etc/systemd/system/graphical.target.wants) big_ass_tiles, resymlink
+  - make sure to set mode to always, delete button from /etc/nymea/nymea-networkmanager.conf
