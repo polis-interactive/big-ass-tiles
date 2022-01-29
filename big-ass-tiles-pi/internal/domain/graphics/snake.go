@@ -94,8 +94,8 @@ var snakeStates = struct {
 const (
 	SnakeMaxLength = 12
 	SnakeMinLength = 5
-	SnakeMaxStep   = 750
-	SnakeMinStep   = 300
+	SnakeMaxStep   = 500
+	SnakeMinStep   = 50
 )
 
 type snake struct {

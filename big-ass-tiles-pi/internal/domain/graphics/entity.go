@@ -98,4 +98,10 @@ func (g *graphics) applyDecay() {
 			}
 		}
 	}
+	pct := (1 - g.decay) * 0.05
+	for i := 0; i < g.grid.Columns; i++ {
+		for j := 0; j < g.grid.Rows; j++ {
+			g.cells[i][j].FadeOut(pct)
+		}
+	}
 }

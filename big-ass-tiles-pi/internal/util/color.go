@@ -94,6 +94,12 @@ func (c *Color) FadeNew(cn *Color, pct float64) {
 	}
 }
 
+func (c *Color) FadeOut(pct float64) {
+	c.R = uint8(math.Max(float64(c.R)*pct, 0))
+	c.G = uint8(math.Max(float64(c.G)*pct, 0))
+	c.B = uint8(math.Max(float64(c.B)*pct, 0))
+}
+
 var red = Color{R: 255, W: 255}
 var green = Color{G: 255, W: 255}
 var blue = Color{B: 255, W: 255}
