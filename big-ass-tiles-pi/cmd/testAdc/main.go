@@ -57,17 +57,43 @@ func (t testAdcConfig) GetReadVoltage() physic.ElectricPotential {
 	return physic.MilliVolt * 3300
 }
 
-type testAdcBus struct{}
+type inputState struct {
+	minValue float64
+	maxValue float64
+}
+
+type testAdcBus struct {
+	minMaxState map[domain.InputType]*inputState
+}
 
 var _ control.Bus = (*testAdcBus)(nil)
 
-func (t testAdcBus) HandleControlInputChange(state *domain.InputState) {
-	log.Println(fmt.Sprintf("%s: %f", state.InputType, state.InputValue))
+func (t *testAdcBus) HandleControlInputChange(state *domain.InputState) {
+	ip := state.InputType
+	iv := state.InputValue
+	if _, ok := t.minMaxState[ip]; !ok {
+		t.minMaxState[ip] = &inputState{
+			minValue: iv,
+			maxValue: iv,
+		}
+		log.Println(fmt.Sprintf("%s: %f", state.InputType, state.InputValue))
+		return
+	}
+	if t.minMaxState[ip].minValue > iv {
+		t.minMaxState[ip].minValue = iv
+		log.Println(fmt.Sprintf("%s:  new min %f", state.InputType, state.InputValue))
+	}
+	if t.minMaxState[ip].maxValue > iv {
+		t.minMaxState[ip].maxValue = iv
+		log.Println(fmt.Sprintf("%s:  new max %f", state.InputType, state.InputValue))
+	}
 }
 
 func main() {
 	conf := &testAdcConfig{}
-	bus := &testAdcBus{}
+	bus := &testAdcBus{
+		minMaxState: make(map[domain.InputType]*inputState),
+	}
 	c, err := control.NewService(conf, bus)
 	if err != nil {
 		log.Println("Unable to create control service")
