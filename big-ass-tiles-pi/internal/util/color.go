@@ -2,7 +2,6 @@ package util
 
 import (
 	"image/color"
-	"log"
 	"math"
 )
 
@@ -145,7 +144,5 @@ func Wheel(position int) Color {
 
 func WheelUint32(position int) uint32 {
 	c := Wheel(position)
-	log.Println(position)
-	log.Println(c)
 	return c.ToBits()
 }
