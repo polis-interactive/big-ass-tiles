@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/domain"
 	"log"
+	"math"
 	"periph.io/x/periph/conn/i2c/i2creg"
 	"periph.io/x/periph/conn/physic"
 	"periph.io/x/periph/experimental/conn/analog"
@@ -165,9 +166,10 @@ func (a *adcController) createAdcChannel(
 					close(chOut)
 					return
 				}
+				raw := a.getValueFromAnalog(rd)
 				chOut <- domain.InputPair{
 					InputNumber: inputNumber,
-					InputValue:  a.getValueFromAnalog(rd),
+					InputValue:  math.Max(math.Min(raw, 1.0), 0.0),
 				}
 			}
 		}
