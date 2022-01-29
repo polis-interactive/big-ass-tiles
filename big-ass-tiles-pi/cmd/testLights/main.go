@@ -83,7 +83,7 @@ func max(i int, j int) int {
 func (t testRenderBus) GetGridColorsNumber() [][]uint32 {
 	for i := 0; i < 11; i++ {
 		for j := 0; j < 3; j++ {
-			position := max(min(t.increment+i+10*j, 0), 255)
+			position := t.increment + i + 10*j%256
 			t.colors[i][j] = util.WheelUint32(position)
 		}
 	}
