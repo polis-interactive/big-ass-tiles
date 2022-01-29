@@ -27,6 +27,9 @@ func (t testAdcConfig) GetControlType() domain.ControlType {
 func (t testAdcConfig) GetInputTypes() []domain.InputType {
 	return []domain.InputType{
 		domain.InputTypes.BRIGHTNESS,
+		domain.InputTypes.SPEED,
+		domain.InputTypes.ATTACK,
+		domain.InputTypes.DECAY,
 	}
 }
 
