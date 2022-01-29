@@ -31,7 +31,7 @@ func (s *snakes) startSnakes() {
 }
 
 func timeMultiplier(m float64) float64 {
-	return m + 0.5
+	return 0.1 * math.Pow(100, m)
 }
 
 func remove(s []snake, i int) []snake {
