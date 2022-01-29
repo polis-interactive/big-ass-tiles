@@ -87,6 +87,7 @@ func (t testRenderBus) GetGridColorsNumber() [][]uint32 {
 			t.colors[i][j] = util.WheelUint32(position)
 		}
 	}
+	t.increment += 1
 	return t.colors
 }
 
