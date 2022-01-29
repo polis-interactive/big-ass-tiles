@@ -21,7 +21,8 @@ func main() {
 			RowExtension: 0,
 		},
 		ControlConfig: &application.ControlConfig{
-			ControlType: domain.ControlTypes.GUI,
+			ControlType:    domain.ControlTypes.GUI,
+			InputTolerance: 0.001,
 		},
 		WindowConfig: &application.WindowConfig{
 			TileSize: 75,

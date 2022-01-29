@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/cmd/testLights/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/util/math.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/testAdc/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/testAdc/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/runWindows/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/runWindows/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/testGui/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/testGui/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/snake.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/snake.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/render/ws2812.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/ws2812.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/color.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/color.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,8 +120,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/runWindows" />
-        <item itemvalue="Go Build.go build github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/testGo" />
         <item itemvalue="Go Build.go build github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/testGui" />
+        <item itemvalue="Go Build.go build github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/testGo" />
       </list>
     </recent_temporary>
   </component>

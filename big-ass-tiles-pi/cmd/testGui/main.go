@@ -7,10 +7,27 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"periph.io/x/periph/conn/physic"
 	"syscall"
 )
 
 type testGuiConfig struct{}
+
+func (t testGuiConfig) GetInputPins() []domain.InputPin {
+	panic("unused")
+}
+
+func (t testGuiConfig) GetReadFrequency() physic.Frequency {
+	panic("unused")
+}
+
+func (t testGuiConfig) GetReadVoltage() physic.ElectricPotential {
+	panic("unused")
+}
+
+func (t testGuiConfig) GetInputTolerance() float64 {
+	return 0.001
+}
 
 var _ control.Config = (*testGuiConfig)(nil)
 

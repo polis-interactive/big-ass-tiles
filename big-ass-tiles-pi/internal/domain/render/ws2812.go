@@ -5,6 +5,7 @@ import (
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util"
 	ws2811 "github.com/rpi-ws281x/rpi-ws281x-go"
 	"log"
+	"math"
 	"time"
 )
 
@@ -13,6 +14,7 @@ type ws2812Render struct {
 	channel int
 	options *ws2811.Option
 	strip   *ws2811.WS2811
+	mapLed  [][][]int
 }
 
 var _ render = (*ws2812Render)(nil)
@@ -46,10 +48,43 @@ func newWs2812Render(base *baseRender, cfg ws2812RenderConfig) *ws2812Render {
 		options:    &options,
 		channel:    channel,
 		strip:      nil,
+		mapLed:     nil,
 	}
+
+	r.generateLeds()
 
 	log.Println("ws2812Render, newWs2812Render: created")
 	return r
+}
+
+func (r *ws2812Render) generateLeds() {
+	ledCount := r.options.Channels[r.channel].LedCount
+	columns := r.baseRender.grid.Columns
+	rows := r.baseRender.grid.Rows
+	ledsPerCell := r.baseRender.grid.LedPerCell
+
+	r.mapLed = make([][][]int, columns)
+	for i := 0; i < columns; i++ {
+		r.mapLed[i] = make([][]int, rows)
+		for j := 0; j < rows; j++ {
+			r.mapLed[i][j] = make([]int, 0)
+		}
+	}
+
+	ledsPerScoot := r.baseRender.grid.LedPerScoot
+	ledsPerRow := columns * ledsPerCell
+	for i := 0; i < ledCount; i++ {
+		row := int(float64(i) / float64(ledsPerRow))
+		isOddRowScoot := int(math.Floor(float64(i)/float64(ledsPerCell)))%2 == 1
+		nominalColumn := int(math.Floor(float64(i)/float64(ledsPerScoot))) % columns
+		var actualColumn int
+		if isOddRowScoot {
+			actualColumn = columns - nominalColumn - 1
+		} else {
+			actualColumn = nominalColumn
+		}
+		r.mapLed[actualColumn][row] = append(r.mapLed[actualColumn][row], i)
+	}
 }
 
 func (r *ws2812Render) runMainLoop() {
@@ -95,8 +130,20 @@ CloseWs2812Loop:
 }
 
 func (r *ws2812Render) runRender() error {
-	//TODO implement me
-	panic("implement me")
+	c := r.bus.GetGridColorsNumber()
+	leds := r.strip.Leds(r.channel)
+
+	for i := 0; i < r.baseRender.grid.Columns; i++ {
+		for j := 0; j < r.baseRender.grid.Rows; j++ {
+			cOut := c[i][j]
+			for _, k := range r.mapLed[i][j] {
+				leds[k] = cOut
+			}
+		}
+	}
+
+	err := r.strip.Render()
+	return err
 }
 
 func (r *ws2812Render) tryBlackoutStrip() {

@@ -82,6 +82,18 @@ func (c *Color) FadeBetween(c1 *Color, pct float64) {
 	}
 }
 
+func (c *Color) FadeNew(cn *Color, pct float64) {
+	if pct <= 0.0 {
+		*c = black
+	} else if pct >= 1.0 {
+		*c = *cn
+	} else {
+		c.R = uint8(math.Min(float64(cn.R)*pct, 255))
+		c.G = uint8(math.Min(float64(cn.G)*pct, 255))
+		c.B = uint8(math.Min(float64(cn.B)*pct, 255))
+	}
+}
+
 var red = Color{R: 255, W: 255}
 var green = Color{G: 255, W: 255}
 var blue = Color{B: 255, W: 255}
@@ -106,4 +118,31 @@ func NextColor(n uint64) Color {
 		return yellow
 	}
 	return black
+}
+
+func Wheel(position int) Color {
+	c := Color{
+		W: 255,
+	}
+	if position < 85 {
+		c.R = uint8(position * 3)
+		c.G = uint8(255 - position*3)
+		c.B = 0
+	} else if position < 170 {
+		position -= 85
+		c.R = uint8(255 - position*3)
+		c.G = 0
+		c.B = uint8(position * 3)
+	} else {
+		position -= 170
+		c.R = 0
+		c.G = uint8(position * 3)
+		c.B = uint8(255 - position*3)
+	}
+	return c
+}
+
+func WheelUint32(position int) uint32 {
+	c := Wheel(position)
+	return c.ToBits()
 }

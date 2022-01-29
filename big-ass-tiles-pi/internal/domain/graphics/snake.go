@@ -2,6 +2,7 @@ package graphics
 
 import (
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util"
+	"math"
 	"math/rand"
 	"time"
 )
@@ -135,8 +136,9 @@ func (s *snake) tryUpdateSnake(elapsed int64, attack float64) bool {
 	s.tryStepSnake(elapsed)
 	stepPct := float64(s.accumulatedMillis) / float64(s.step)
 	snakeIsAlive := false
+	sl := len(s.path)
 	for i := range s.path {
-		s.updateSnakePath(i, stepPct, attack)
+		s.updateSnakePath(i, sl, stepPct, attack)
 		snakeIsAlive = true
 	}
 	return snakeIsAlive
@@ -206,12 +208,32 @@ func (s *snake) getUniqueNextPoint() *util.Point {
 	}
 }
 
-func (s *snake) updateSnakePath(pos int, stepPct float64, attack float64) {
+func (s *snake) updateSnakePath(pos int, total int, stepPct float64, attack float64) {
 	// i'm going to need some offset during entering and leaving
 	p := s.path[pos]
 	if attack >= 1 {
 		p.pct = 1.0
+		return
 	}
+	if s.state == snakeStates.ENTERING {
+		pos = total - pos - 1
+	} else {
+		pos = s.length - pos - 1
+	}
+	var slope, b float64
+	if attack <= 0 {
+		slope = 1 / float64(s.length-1)
+		b = 0
+	} else {
+		thetaMin := math.Atan(float64(s.length - 1))
+		thetaMax := math.Pi / 2
+		theta := thetaMin + (thetaMax-thetaMin)*attack
+		slope = math.Tan(thetaMax - theta)
+		b = 1 - slope*float64(s.length-1)
+	}
+	maxPct := slope*float64(pos) + b
+	minPct := math.Max(maxPct-slope, 0)
+	p.pct = minPct + (maxPct-minPct)*stepPct
 }
 
 func (s *snake) drawSnake() {
@@ -219,7 +241,7 @@ func (s *snake) drawSnake() {
 		yPos := pos.point.Y
 		if yPos >= 0 && yPos < s.snakes.grid.Rows {
 			xPos := pos.point.X
-			s.snakes.cells[xPos][yPos].FadeBetween(&s.color, pos.pct)
+			s.snakes.cells[xPos][yPos].FadeNew(&s.color, pos.pct)
 		}
 	}
 }
