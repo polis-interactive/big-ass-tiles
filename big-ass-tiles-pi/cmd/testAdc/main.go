@@ -25,12 +25,7 @@ func (t testAdcConfig) GetControlType() domain.ControlType {
 }
 
 func (t testAdcConfig) GetInputTypes() []domain.InputType {
-	return []domain.InputType{
-		domain.InputTypes.BRIGHTNESS,
-		domain.InputTypes.SPEED,
-		domain.InputTypes.ATTACK,
-		domain.InputTypes.DECAY,
-	}
+	panic("not in use")
 }
 
 func (t testAdcConfig) GetInputPins() []domain.InputPin {
@@ -38,6 +33,18 @@ func (t testAdcConfig) GetInputPins() []domain.InputPin {
 		{
 			InputType: domain.InputTypes.BRIGHTNESS,
 			Pin:       ads1x15.Channel0,
+		},
+		{
+			InputType: domain.InputTypes.SPEED,
+			Pin:       ads1x15.Channel1,
+		},
+		{
+			InputType: domain.InputTypes.ATTACK,
+			Pin:       ads1x15.Channel2,
+		},
+		{
+			InputType: domain.InputTypes.DECAY,
+			Pin:       ads1x15.Channel3,
 		},
 	}
 }
