@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/big_ass_tiles.service" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/big-ass-tiles.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/big_ass_tiles.target" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/big-ass-tiles.target" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/install.md" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/install.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/script_autostart" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/script_autostart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/cells.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/cells.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/snake.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/snake.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/color.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/color.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

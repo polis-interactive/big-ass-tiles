@@ -108,7 +108,7 @@ var aqua = Color{G: 255, B: 255, W: 255}
 var yellow = Color{R: 255, G: 255, W: 255}
 
 func NextColor(n uint64) Color {
-	np := n % 6
+	np := n % 3
 	switch np {
 	case 0:
 		return red

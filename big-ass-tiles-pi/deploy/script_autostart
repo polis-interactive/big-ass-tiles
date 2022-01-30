@@ -2,4 +2,10 @@
 
 echo "Starting big ass tiles"
 
+# this is a bad hack
+sleep 1
+systemctl stop nymea-networkmanager.service
+sleep 1
+systemctl start nymea
+
 /home/pi/big-ass-tiles/big-ass-tiles-pi/main

@@ -11,7 +11,7 @@ type graphics struct {
 	*snakes
 	grid            util.GridDefinition
 	decay           float64
-	cells           [][]util.Color
+	cells           [][]cell
 	updateFrequency time.Duration
 	mu              *sync.RWMutex
 	wg              *sync.WaitGroup
@@ -19,10 +19,14 @@ type graphics struct {
 }
 
 func newGraphics(conf Config) *graphics {
+	now := time.Now()
 	g := conf.GetGridDefinition()
-	cells := make([][]util.Color, g.Columns)
+	cells := make([][]cell, g.Columns)
 	for i := 0; i < g.Columns; i++ {
-		rows := make([]util.Color, g.Rows)
+		rows := make([]cell, g.Rows)
+		for j := 0; j < g.Rows; j++ {
+			rows[j] = newCell(now)
+		}
 		cells[i] = rows
 	}
 	gr := &graphics{
@@ -83,25 +87,32 @@ func (g *graphics) updateGraphics() {
 	g.updateSnakes()
 	g.mu.Lock()
 	defer g.mu.Unlock()
-	g.applyDecay()
-	g.drawSnakes()
+	now := time.Now()
+	g.drawSnakes(now)
+	g.applyDecay(now)
 }
 
-func (g *graphics) applyDecay() {
+func (g *graphics) applyDecay(now time.Time) {
 	if g.decay <= 0 {
+		for i := 0; i < g.grid.Columns; i++ {
+			for j := 0; j < g.grid.Rows; j++ {
+				g.cells[i][j].DoNothing()
+			}
+		}
 		return
 	}
 	if g.decay == 1 {
 		for i := 0; i < g.grid.Columns; i++ {
 			for j := 0; j < g.grid.Rows; j++ {
-				g.cells[i][j].BlackOut()
+				g.cells[i][j].TryBlackoutCell(now)
 			}
 		}
+		return
 	}
 	pct := (1 - g.decay) * 0.05
 	for i := 0; i < g.grid.Columns; i++ {
 		for j := 0; j < g.grid.Rows; j++ {
-			g.cells[i][j].FadeOut(pct)
+			g.cells[i][j].FadeOut(pct, now)
 		}
 	}
 }

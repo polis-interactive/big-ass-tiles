@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	MaxSnakeCount = 5
+	MaxSnakeCount = 3
 )
 
 type snakes struct {
@@ -62,9 +62,9 @@ func (s *snakes) updateSnakes() {
 	}
 }
 
-func (s *snakes) drawSnakes() {
-	for i := range s.snakeRunners {
-		s.snakeRunners[i].drawSnake()
+func (s *snakes) drawSnakes(now time.Time) {
+	for i := len(s.snakeRunners) - 1; i >= 0; i-- {
+		s.snakeRunners[i].drawSnake(now)
 	}
 }
 
@@ -92,10 +92,10 @@ var snakeStates = struct {
 }
 
 const (
-	SnakeMaxLength = 12
+	SnakeMaxLength = 9
 	SnakeMinLength = 5
-	SnakeMaxStep   = 500
-	SnakeMinStep   = 50
+	SnakeMaxStep   = 450
+	SnakeMinStep   = 125
 )
 
 type snake struct {
@@ -236,12 +236,12 @@ func (s *snake) updateSnakePath(pos int, total int, stepPct float64, attack floa
 	p.pct = minPct + (maxPct-minPct)*stepPct
 }
 
-func (s *snake) drawSnake() {
+func (s *snake) drawSnake(now time.Time) {
 	for _, pos := range s.path {
 		yPos := pos.point.Y
 		if yPos >= 0 && yPos < s.snakes.grid.Rows {
 			xPos := pos.point.X
-			s.snakes.cells[xPos][yPos].FadeNew(&s.color, pos.pct)
+			s.snakes.cells[xPos][yPos].FadeBetween(&s.color, pos.pct, now)
 		}
 	}
 }

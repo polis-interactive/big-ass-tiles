@@ -50,7 +50,7 @@ func (s *service) GetGridColorsNumber() [][]uint32 {
 	for i := 0; i < grid.Columns; i++ {
 		colors[i] = make([]uint32, grid.Rows)
 		for j := 0; j < grid.Rows; j++ {
-			c := s.graphics.cells[i][j].DimColor(s.brightness)
+			c := s.graphics.cells[i][j].outputColor.DimColor(s.brightness)
 			colors[i][j] = c.ToBits()
 		}
 	}
@@ -65,7 +65,7 @@ func (s *service) GetGridSysColors() [][]color.RGBA {
 	for i := 0; i < grid.Columns; i++ {
 		colors[i] = make([]color.RGBA, grid.Rows)
 		for j := 0; j < grid.Rows; j++ {
-			c := s.graphics.cells[i][j].DimColor(s.brightness)
+			c := s.graphics.cells[i][j].outputColor.DimColor(s.brightness)
 			colors[i][j] = c.ToSysColor()
 		}
 	}
@@ -80,7 +80,7 @@ func (s *service) GetGridColors() [][]util.Color {
 	for i := 0; i < grid.Columns; i++ {
 		colors[i] = make([]util.Color, grid.Rows)
 		for j := 0; j < grid.Rows; j++ {
-			colors[i][j] = s.graphics.cells[i][j].DimColor(s.brightness)
+			colors[i][j] = s.graphics.cells[i][j].outputColor.DimColor(s.brightness)
 		}
 	}
 	return colors
