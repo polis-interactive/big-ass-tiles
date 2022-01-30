@@ -133,29 +133,35 @@ func (g *graphics) runGraphicsLoop() error {
 		g.mu.Unlock()
 	}(g, ticker)
 
-	for {
-		select {
-		case _, ok := <-g.shutdowns:
-			if !ok {
-				return nil
-			}
-		case <-ticker.C:
-			if g.reloadOnUpdate {
-				err = g.gs.ReloadShader()
+	err = func() error {
+		for {
+			select {
+			case _, ok := <-g.shutdowns:
+				if !ok {
+					return nil
+				}
+			case <-ticker.C:
+				if g.reloadOnUpdate {
+					err = g.gs.ReloadShader()
+					if err != nil {
+						return err
+					}
+				}
+				err = g.gs.RunShader()
+				if err != nil {
+					return err
+				}
+				g.mu.Lock()
+				err = gs.ReadToPixels(g.pb.GetUnsafePointer())
+				g.mu.Unlock()
 				if err != nil {
 					return err
 				}
 			}
-			err = g.gs.RunShader()
-			if err != nil {
-				return err
-			}
-			g.mu.Lock()
-			err = gs.ReadToPixels(g.pb.GetUnsafePointer())
-			g.mu.Unlock()
-			if err != nil {
-				return err
-			}
 		}
-	}
+	}()
+
+	g.gs = nil
+	return err
+
 }
