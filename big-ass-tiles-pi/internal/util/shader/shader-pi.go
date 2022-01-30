@@ -16,7 +16,6 @@ import (
 )
 
 func glfwInit() error {
-	glfw.InitHint()
 	return glfw.Init()
 }
 

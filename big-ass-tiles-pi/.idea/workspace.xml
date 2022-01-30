@@ -5,42 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/basic.frag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/basic.vert" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/grpc/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/grpc/controlServer.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/grpc/controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/control/grpc/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/util/shader/shader-pi.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/util/shader/shader-windows.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/util/shader/shader.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/runPi/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/runPi/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/runWindows/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/runWindows/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/application/application.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/application/application.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/application/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/application/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/adc.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/adc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/gui.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/gui.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/cells.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/snake.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/render/bus.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/bus.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/render/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/render/terminal.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/terminal.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/render/window.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/window.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/render/ws2812.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/ws2812.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/types.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/infrastructure/bus/bus.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/infrastructure/bus/bus.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/infrastructure/bus/render.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/infrastructure/bus/render.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/color.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/color.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/shader/shader-pi.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/shader/shader-pi.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
