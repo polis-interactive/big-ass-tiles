@@ -20,4 +20,5 @@ type Config interface {
 	AdcConfig
 	GetControlType() domain.ControlType
 	GetInputTolerance() float64
+	GetGrpcPort() int
 }

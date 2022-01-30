@@ -16,7 +16,7 @@ import (
 )
 
 type adcController struct {
-	*controller
+	*Controller
 	inputPins []domain.InputPin
 	freq      physic.Frequency
 	volt      physic.ElectricPotential
@@ -24,7 +24,7 @@ type adcController struct {
 
 var _ controllerImpl = (*adcController)(nil)
 
-func newAdcController(c *controller, cfg AdcConfig) (*adcController, error) {
+func newAdcController(c *Controller, cfg AdcConfig) (*adcController, error) {
 
 	inputPins := cfg.GetInputPins()
 	inputStates := make([]domain.InputState, len(inputPins))
@@ -47,7 +47,7 @@ func newAdcController(c *controller, cfg AdcConfig) (*adcController, error) {
 	}
 
 	a := &adcController{
-		controller: c,
+		Controller: c,
 		inputPins:  inputPins,
 		freq:       cfg.GetReadFrequency(),
 		volt:       cfg.GetReadVoltage(),
@@ -55,7 +55,7 @@ func newAdcController(c *controller, cfg AdcConfig) (*adcController, error) {
 	return a, nil
 }
 
-func (a *adcController) runMainLoop() {
+func (a *adcController) RunMainLoop() {
 
 	log.Println("adcControl, Main Loop: running")
 
@@ -118,7 +118,7 @@ func (a *adcController) tryRunMainLoop() error {
 				err = errors.New("event channel suddenly closed")
 				goto CleanUp
 			}
-			a.setInputValue(e.InputNumber, e.InputValue)
+			a.SetInputValue(e.InputNumber, e.InputValue)
 		}
 	}
 

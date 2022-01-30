@@ -49,7 +49,7 @@ func newRender(cfg Config, bus Bus) (render, error) {
 	case domain.RenderTypes.WS2812:
 		r = newWs2812Render(base, cfg)
 	case domain.RenderTypes.TERMINAL:
-		r = newTerminalRender(base)
+		r = newTerminalRender(base, cfg)
 	default:
 		return nil, errors.New("sign, newRender: Invalid render type")
 	}

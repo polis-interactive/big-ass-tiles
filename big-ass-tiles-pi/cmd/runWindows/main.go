@@ -14,32 +14,35 @@ import (
 func main() {
 	conf := &application.Config{
 		GridDefinition: util.GridDefinition{
-			Rows:            3,
-			Columns:         11,
-			LedPerCell:      2,
-			LedPerScoot:     2,
-			RowExtension:    3,
-			ColumnExtension: 5,
+			Rows:        3,
+			Columns:     11,
+			LedPerCell:  2,
+			LedPerScoot: 2,
 		},
 		ControlConfig: &application.ControlConfig{
-			ControlType:    domain.ControlTypes.GUI,
+			ControlType:    domain.ControlTypes.GRPC,
 			InputTolerance: 0.001,
+			GrpcPort:       6969,
 		},
 		WindowConfig: &application.WindowConfig{
-			TileSize: 75,
-			InputTypes: []domain.InputType{
-				domain.InputTypes.BRIGHTNESS,
-				domain.InputTypes.ATTACK,
-				domain.InputTypes.SPEED,
-				domain.InputTypes.DECAY,
-			},
+			TileSize: 0,
 		},
 		GraphicsConfig: &application.GraphicsConfig{
-			GraphicsFrequency: 33 * time.Millisecond,
+			ShaderName:     "basic",
+			ReloadOnUpdate: true,
+			DisplayOutput:  true,
+			PixelSize:      100,
+			Frequency:      33 * time.Millisecond,
 		},
 		RenderConfig: &application.RenderConfig{
-			RenderType:      domain.RenderTypes.WINDOW,
-			RenderFrequency: 33 * time.Millisecond,
+			RenderType:      domain.RenderTypes.TERMINAL,
+			RenderFrequency: 10 * time.Second,
+		},
+		InputTypes: []domain.InputType{
+			domain.InputTypes.BRIGHTNESS,
+			domain.InputTypes.SPEED,
+			domain.InputTypes.ATTACK,
+			domain.InputTypes.DECAY,
 		},
 	}
 

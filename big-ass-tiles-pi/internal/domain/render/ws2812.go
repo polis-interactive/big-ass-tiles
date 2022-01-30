@@ -132,19 +132,12 @@ CloseWs2812Loop:
 }
 
 func (r *ws2812Render) runRender() error {
-	c := r.bus.GetGridColorsNumber()
-	leds := r.strip.Leds(r.channel)
-
-	for i := 0; i < r.baseRender.grid.Columns; i++ {
-		for j := 0; j < r.baseRender.grid.Rows; j++ {
-			cOut := c[i][j]
-			for _, k := range r.mapLed[i][j] {
-				leds[k] = cOut
-			}
-		}
+	err := r.bus.CopyLightsToUint32Buffer(r.strip.Leds(r.channel))
+	if err != nil {
+		return err
 	}
 
-	err := r.strip.Render()
+	err = r.strip.Render()
 	return err
 }
 

@@ -49,7 +49,11 @@ func main() {
 			ReadVoltage:   physic.MilliVolt * 3300,
 		},
 		GraphicsConfig: &application.GraphicsConfig{
-			GraphicsFrequency: 33 * time.Millisecond,
+			ShaderName:     "basic",
+			ReloadOnUpdate: false,
+			DisplayOutput:  false,
+			PixelSize:      1,
+			Frequency:      33 * time.Millisecond,
 		},
 		RenderConfig: &application.RenderConfig{
 			RenderType:      domain.RenderTypes.WS2812,

@@ -7,7 +7,7 @@ import (
 )
 
 type service struct {
-	controller *controller
+	controller *Controller
 	mu         *sync.Mutex
 }
 

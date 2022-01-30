@@ -115,17 +115,13 @@ func (r *windowRender) runMainLoop() {
 
 func (r *windowRender) runRender() error {
 
-	g := r.bus.GetGridSysColors()
-
 	tileCount := r.grid.Columns * r.grid.Rows
 
 	tiles := make([]fyne.CanvasObject, tileCount)
 
-	for j := 0; j < r.grid.Rows; j++ {
-		for i := 0; i < r.grid.Columns; i++ {
-			posOut := i + (r.grid.Rows-j-1)*r.grid.Columns
-			tiles[posOut] = r.newTile(g[i][j])
-		}
+	err := r.bus.CopyLightsToFyneBuff(tiles, r.newTile)
+	if err != nil {
+		return err
 	}
 
 	grid := container.New(layout.NewGridLayout(r.grid.Columns), tiles...)

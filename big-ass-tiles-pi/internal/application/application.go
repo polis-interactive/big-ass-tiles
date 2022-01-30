@@ -36,7 +36,11 @@ func NewApplication(conf *Config) (*Application, error) {
 	}
 	app.serviceBus.BindControlService(controlService)
 
-	graphicsService := graphics.NewService(conf)
+	graphicsService, err := graphics.NewService(conf)
+	if err != nil {
+		log.Println("Application, NewApplication: failed to create graphics")
+		return nil, err
+	}
 	app.serviceBus.BindGraphicsService(graphicsService)
 
 	renderService, err := render.NewService(conf, app.serviceBus)

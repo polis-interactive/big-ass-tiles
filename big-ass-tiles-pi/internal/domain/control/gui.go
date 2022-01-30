@@ -13,13 +13,13 @@ import (
 )
 
 type guiController struct {
-	*controller
+	*Controller
 	w fyne.Window
 }
 
 var _ controllerImpl = (*guiController)(nil)
 
-func newGuiController(c *controller, cfg WindowConfig) *guiController {
+func newGuiController(c *Controller, cfg WindowConfig) *guiController {
 
 	inputTypes := cfg.GetInputTypes()
 	inputStates := make([]domain.InputState, len(inputTypes))
@@ -30,7 +30,7 @@ func newGuiController(c *controller, cfg WindowConfig) *guiController {
 	c.inputStates = inputStates
 
 	g := &guiController{
-		controller: c,
+		Controller: c,
 		w:          nil,
 	}
 	return g
@@ -68,7 +68,7 @@ func (g *guiController) newSlider(sliderPosition int) fyne.CanvasObject {
 	data := binding.BindFloat(&f)
 	listener := binding.NewDataListener(func() {
 		v := f / 255
-		g.setInputValue(sliderPosition, v)
+		g.SetInputValue(sliderPosition, v)
 	})
 	data.AddListener(listener)
 	slider := widget.NewSliderWithData(0, 255, data)
@@ -89,7 +89,7 @@ func (g *guiController) runNewWindow() {
 	g.w.ShowAndRun()
 }
 
-func (g *guiController) runMainLoop() {
+func (g *guiController) RunMainLoop() {
 	log.Println("GuiController, RunMainLoop: running")
 
 	g.createNewWindow()

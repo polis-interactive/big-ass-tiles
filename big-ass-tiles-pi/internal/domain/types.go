@@ -2,9 +2,11 @@ package domain
 
 import (
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util"
-	"image/color"
 	"periph.io/x/periph/experimental/devices/ads1x15"
+	"sync"
 )
+
+const Program = "big-ass-tiles-pi"
 
 type RenderType string
 
@@ -32,16 +34,19 @@ type RenderService interface {
 type ControlType string
 
 const (
-	guiControl ControlType = "GUI_CONTROL"
-	adcControl ControlType = "ADC_CONTROL"
+	guiControl  ControlType = "GUI_CONTROL"
+	grpcControl ControlType = "GRPC_CONTROL"
+	adcControl  ControlType = "ADC_CONTROL"
 )
 
 var ControlTypes = struct {
-	GUI ControlType
-	ADC ControlType
+	GUI  ControlType
+	GRPC ControlType
+	ADC  ControlType
 }{
-	GUI: guiControl,
-	ADC: adcControl,
+	GUI:  guiControl,
+	GRPC: grpcControl,
+	ADC:  adcControl,
 }
 
 type ControlService interface {
@@ -89,8 +94,6 @@ type InputState struct {
 type GraphicsService interface {
 	Startup()
 	Shutdown()
-	GetGridColorsNumber() [][]uint32
-	GetGridColors() [][]util.Color
-	GetGridSysColors() [][]color.RGBA
 	HandleInputChange(*InputState)
+	GetPb() (pb *util.PixelBuffer, preLockedMutex *sync.RWMutex)
 }

@@ -2,7 +2,7 @@ package util
 
 import (
 	"image/color"
-	"math"
+	"unsafe"
 )
 
 type Color struct {
@@ -33,126 +33,46 @@ func (c *Color) ToSysColor() color.RGBA {
 	}
 }
 
-var black = Color{W: 255}
-var white = Color{R: 255, G: 255, B: 255, W: 255}
-
-func (c *Color) BlackOut() {
-	c.R = 0
-	c.G = 0
-	c.B = 0
+type PixelBuffer struct {
+	RawWidth  int
+	RawHeight int
+	Width     int
+	Height    int
+	minX      int
+	minY      int
+	stride    int
+	buffer    []Color
 }
 
-func (c *Color) WhiteOut() {
-	c.R = 255
-	c.G = 255
-	c.B = 255
-}
-
-func (c *Color) LerpBetween(c1 *Color, c2 *Color, pct float64) {
-	if pct <= 0.0 {
-		*c = *c1
-	} else if pct >= 1.0 {
-		*c = *c2
-	} else {
-		c.R = uint8(float64(c2.R-c1.R)*pct) + c1.R
-		c.G = uint8(float64(c2.G-c1.G)*pct) + c1.G
-		c.B = uint8(float64(c2.B-c1.B)*pct) + c1.B
+func NewPixelBuffer(width, height, minX, minY, stride int) *PixelBuffer {
+	return &PixelBuffer{
+		Width:  width,
+		Height: height,
+		minX:   minX,
+		minY:   minY,
+		stride: stride,
+		buffer: make([]Color, width*height*stride),
 	}
 }
 
-func (c *Color) FadeWhite(p float64) {
-	if p >= 1.0 {
-		*c = white
-	} else if p <= 0.0 {
-		*c = black
-	} else {
-		c.LerpBetween(&black, &white, p)
-	}
+func (pb *PixelBuffer) GetUnsafePointer() unsafe.Pointer {
+	return unsafe.Pointer(&pb.buffer[0])
 }
 
-func (c *Color) FadeBetween(c1 *Color, pct float64) {
-	if pct <= 0.0 {
-		return
-	} else if pct >= 1.0 {
-		*c = *c1
-	} else {
-		c.R = uint8(math.Min(float64(c1.R-c.R)*pct+float64(c.R), 255))
-		c.G = uint8(math.Min(float64(c1.G-c.G)*pct+float64(c.G), 255))
-		c.B = uint8(math.Min(float64(c1.B-c.B)*pct+float64(c.B), 255))
-	}
+func (pb *PixelBuffer) GetPixel(p *Point) Color {
+	mappedX := (p.X - pb.minX) * pb.stride
+	mappedY := (p.Y - pb.minY) * pb.stride
+	return pb.buffer[mappedX+mappedY*pb.Width]
 }
 
-func (c *Color) FadeNew(cn *Color, pct float64) {
-	if pct <= 0.0 {
-		*c = black
-	} else if pct >= 1.0 {
-		*c = *cn
-	} else {
-		c.R = uint8(math.Min(float64(cn.R)*pct, 255))
-		c.G = uint8(math.Min(float64(cn.G)*pct, 255))
-		c.B = uint8(math.Min(float64(cn.B)*pct, 255))
-	}
+func (pb *PixelBuffer) GetPixelPointer(p *Point) *Color {
+	mappedX := (p.X - pb.minX) * pb.stride
+	mappedY := (p.Y - pb.minY) * pb.stride
+	return &pb.buffer[mappedX+mappedY*pb.Width]
 }
 
-func (c *Color) FadeOut(pct float64) {
-	c.R = uint8(math.Max(float64(c.R)*pct, 0))
-	c.G = uint8(math.Max(float64(c.G)*pct, 0))
-	c.B = uint8(math.Max(float64(c.B)*pct, 0))
-}
-
-var red = Color{R: 255, W: 255}
-var green = Color{G: 255, W: 255}
-var blue = Color{B: 255, W: 255}
-var fuchsia = Color{R: 255, B: 255, W: 255}
-var aqua = Color{G: 255, B: 255, W: 255}
-var yellow = Color{R: 255, G: 255, W: 255}
-
-var coolGreen = Color{R: 0, G: 255, B: 181, W: 255}
-var coolMid = Color{R: 61, G: 144, B: 194, W: 255}
-var coolBlue = Color{R: 76, G: 81, B: 183, W: 255}
-
-func NextColor(n uint64) Color {
-	np := n % 3
-	switch np {
-	case 0:
-		return coolGreen
-	case 1:
-		return coolBlue
-	case 2:
-		return coolMid
-	case 3:
-		return fuchsia
-	case 4:
-		return aqua
-	case 5:
-		return yellow
+func (pb *PixelBuffer) BlackOut() {
+	for i := range pb.buffer {
+		pb.buffer[i] = Color{}
 	}
-	return black
-}
-
-func Wheel(position int) Color {
-	c := Color{
-		W: 255,
-	}
-	if position < 85 {
-		c.R = uint8(position * 3)
-		c.G = uint8(255 - position*3)
-		c.B = 0
-	} else if position < 170 {
-		position -= 85
-		c.R = uint8(255 - position*3)
-		c.G = 0
-		c.B = uint8(position * 3)
-	} else {
-		position -= 170
-		c.R = 0
-		c.G = uint8(position * 3)
-		c.B = uint8(255 - position*3)
-	}
-	return c
-}
-
-func WheelUint32(position int) uint32 {
-	c := Wheel(position)
-	return c.ToBits()
 }

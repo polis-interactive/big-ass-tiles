@@ -3,16 +3,17 @@ package control
 import (
 	"fmt"
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/domain"
+	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/domain/control/grpc"
 	"log"
 	"reflect"
 	"sync"
 )
 
 type controllerImpl interface {
-	runMainLoop()
+	RunMainLoop()
 }
 
-type controller struct {
+type Controller struct {
 	impl           controllerImpl
 	bus            Bus
 	inputStates    []domain.InputState
@@ -22,9 +23,9 @@ type controller struct {
 	shutdowns      chan struct{}
 }
 
-func newController(cfg Config, bus Bus) (*controller, error) {
+func newController(cfg Config, bus Bus) (*Controller, error) {
 
-	base := &controller{
+	base := &Controller{
 		bus:            bus,
 		inputTolerance: cfg.GetInputTolerance(),
 		mu:             &sync.RWMutex{},
@@ -37,24 +38,32 @@ func newController(cfg Config, bus Bus) (*controller, error) {
 		base.impl = newGuiController(base, cfg)
 	case domain.ControlTypes.ADC:
 		base.impl, err = newAdcController(base, cfg)
+	case domain.ControlTypes.GRPC:
+		inputTypes := cfg.GetInputTypes()
+		inputStates := make([]domain.InputState, len(inputTypes))
+		for i, inputType := range inputTypes {
+			inputStates[i].InputType = inputType
+		}
+		base.inputStates = inputStates
+		base.impl, err = grpc.NewGrpcController(base, cfg)
 	}
 
 	return base, err
 }
 
-func (c *controller) startup() {
+func (c *Controller) startup() {
 
 	log.Println(fmt.Sprintf("%s, startup: starting", reflect.TypeOf(c.impl)))
 
 	if c.shutdowns == nil {
 		c.shutdowns = make(chan struct{})
 		c.wg.Add(1)
-		go c.impl.runMainLoop()
+		go c.impl.RunMainLoop()
 		log.Println(fmt.Sprintf("%s, startup: running", reflect.TypeOf(c.impl)))
 	}
 }
 
-func (c *controller) shutdown() {
+func (c *Controller) shutdown() {
 	log.Println(fmt.Sprintf("%s, shutdown: shutting down", reflect.TypeOf(c.impl)))
 	if c.shutdowns != nil {
 		close(c.shutdowns)
@@ -64,7 +73,7 @@ func (c *controller) shutdown() {
 	log.Println(fmt.Sprintf("%s, shutdown: done", reflect.TypeOf(c.impl)))
 }
 
-func (c *controller) setInputValue(inputNumber int, inputValue float64) {
+func (c *Controller) SetInputValue(inputNumber int, inputValue float64) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	oldVal := c.inputStates[inputNumber].InputValue
@@ -78,4 +87,12 @@ func (c *controller) setInputValue(inputNumber int, inputValue float64) {
 		InputType:  c.inputStates[inputNumber].InputType,
 		InputValue: inputValue,
 	})
+}
+
+func (c *Controller) GetShutdowns() chan struct{} {
+	return c.shutdowns
+}
+
+func (c *Controller) GetWg() *sync.WaitGroup {
+	return c.wg
 }

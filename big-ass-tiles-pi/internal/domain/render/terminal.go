@@ -2,16 +2,18 @@ package render
 
 import (
 	"fmt"
+	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util"
 	"log"
 )
 
 type terminalRender struct {
 	*baseRender
+	output [][]util.Color
 }
 
 var _ render = (*terminalRender)(nil)
 
-func newTerminalRender(base *baseRender) *terminalRender {
+func newTerminalRender(base *baseRender, cfg Config) *terminalRender {
 
 	log.Println("terminalRender, newTerminalRender: creating")
 
@@ -19,6 +21,12 @@ func newTerminalRender(base *baseRender) *terminalRender {
 		baseRender: base,
 	}
 
+	grid := cfg.GetGridDefinition()
+	r.output = make([][]util.Color, grid.Columns)
+	for i := 0; i < grid.Columns; i++ {
+		r.output[i] = make([]util.Color, grid.Rows)
+	}
+	
 	log.Println("terminalRender, newTerminalRender: created")
 
 	return r
@@ -45,12 +53,15 @@ CloseTerminalLoop:
 
 func (r *terminalRender) runRender() error {
 
-	gridColors := r.bus.GetGridColorsStruct()
+	err := r.bus.CopyLightsToColorBuffer(r.output)
+	if err != nil {
+		return err
+	}
 
 	outputString := "START(\n"
 
-	for i, rows := range gridColors {
-		for j, color := range rows {
+	for i, column := range r.output {
+		for j, color := range column {
 			outputString += fmt.Sprintf("(%d, %d): %#v", i, j, color)
 		}
 		outputString += "\n"

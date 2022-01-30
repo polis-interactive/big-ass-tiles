@@ -39,16 +39,11 @@ func (r *RenderConfig) GetRenderFrequency() time.Duration {
 }
 
 type WindowConfig struct {
-	TileSize   int
-	InputTypes []domain.InputType
+	TileSize int
 }
 
 func (w *WindowConfig) GetTileSize() int {
 	return w.TileSize
-}
-
-func (w *WindowConfig) GetInputTypes() []domain.InputType {
-	return w.InputTypes
 }
 
 type AdcConfig struct {
@@ -71,6 +66,11 @@ func (a *AdcConfig) GetReadVoltage() physic.ElectricPotential {
 type ControlConfig struct {
 	ControlType    domain.ControlType
 	InputTolerance float64
+	GrpcPort       int
+}
+
+func (c *ControlConfig) GetGrpcPort() int {
+	return c.GrpcPort
 }
 
 func (c *ControlConfig) GetControlType() domain.ControlType {
@@ -82,11 +82,31 @@ func (c *ControlConfig) GetInputTolerance() float64 {
 }
 
 type GraphicsConfig struct {
-	GraphicsFrequency time.Duration
+	ShaderName     string
+	DisplayOutput  bool
+	ReloadOnUpdate bool
+	PixelSize      int
+	Frequency      time.Duration
+}
+
+func (g *GraphicsConfig) GetGraphicsShaderName() string {
+	return g.ShaderName
+}
+
+func (g *GraphicsConfig) GetGraphicsReloadOnUpdate() bool {
+	return g.ReloadOnUpdate
+}
+
+func (g *GraphicsConfig) GetGraphicsDisplayOutput() bool {
+	return g.DisplayOutput
+}
+
+func (g *GraphicsConfig) GetGraphicsPixelSize() int {
+	return g.PixelSize
 }
 
 func (g *GraphicsConfig) GetGraphicsFrequency() time.Duration {
-	return g.GraphicsFrequency
+	return g.Frequency
 }
 
 type Config struct {
@@ -97,8 +117,13 @@ type Config struct {
 	*ControlConfig
 	*GraphicsConfig
 	GridDefinition util.GridDefinition
+	InputTypes     []domain.InputType
 }
 
 func (c *Config) GetGridDefinition() util.GridDefinition {
 	return c.GridDefinition
+}
+
+func (c *Config) GetInputTypes() []domain.InputType {
+	return c.InputTypes
 }
