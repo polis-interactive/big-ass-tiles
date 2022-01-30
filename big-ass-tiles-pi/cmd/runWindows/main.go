@@ -14,11 +14,12 @@ import (
 func main() {
 	conf := &application.Config{
 		GridDefinition: util.GridDefinition{
-			Rows:         3,
-			Columns:      11,
-			LedPerCell:   2,
-			LedPerScoot:  2,
-			RowExtension: 0,
+			Rows:            3,
+			Columns:         11,
+			LedPerCell:      2,
+			LedPerScoot:     2,
+			RowExtension:    3,
+			ColumnExtension: 5,
 		},
 		ControlConfig: &application.ControlConfig{
 			ControlType:    domain.ControlTypes.GUI,
