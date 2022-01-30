@@ -107,15 +107,19 @@ var fuchsia = Color{R: 255, B: 255, W: 255}
 var aqua = Color{G: 255, B: 255, W: 255}
 var yellow = Color{R: 255, G: 255, W: 255}
 
+var coolGreen = Color{R: 0, G: 255, B: 181, W: 255}
+var coolMid = Color{R: 61, G: 144, B: 194, W: 255}
+var coolBlue = Color{R: 76, G: 81, B: 183, W: 255}
+
 func NextColor(n uint64) Color {
 	np := n % 3
 	switch np {
 	case 0:
-		return red
+		return coolGreen
 	case 1:
-		return green
+		return coolBlue
 	case 2:
-		return blue
+		return coolMid
 	case 3:
 		return fuchsia
 	case 4:
