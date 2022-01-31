@@ -157,7 +157,7 @@ func newShaderFromFile(file string, sType uint32) (*shader, error) {
 	gles2.ShaderSource(handle, 1, glSrc, nil)
 	gles2.CompileShader(handle)
 	err = getGlError(handle, gles2.COMPILE_STATUS, gles2.GetShaderiv, gles2.GetShaderInfoLog,
-		"SHADER::COMPILE_FAILURE::"+file+"\x00")
+		"SHADER::COMPILE_FAILURE::"+file)
 	if err != nil {
 		return nil, err
 	}
