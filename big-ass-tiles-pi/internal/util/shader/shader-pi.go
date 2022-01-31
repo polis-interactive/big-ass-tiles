@@ -152,6 +152,7 @@ func newShaderFromFile(file string, sType uint32) (*shader, error) {
 	}
 	handle := gles2.CreateShader(sType)
 	srcStr := string(src) + "\x00"
+	log.Println(file)
 	log.Println(srcStr)
 	glSrc, freeFn := gles2.Strs(srcStr)
 	defer freeFn()
