@@ -6,7 +6,6 @@ import (
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util"
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util/shader"
 	"log"
-	"math"
 	"sync"
 	"time"
 )
@@ -113,7 +112,7 @@ func (g *graphics) stepTime() {
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	nt := time.Now()
-	timeMultiplier := 8.0*math.Pow(g.speed, 3.0) - 6.0*math.Pow(g.speed, 2.0) + 3.0*g.speed
+	timeMultiplier := 2.0 * g.speed
 	elapsed := nt.Sub(g.lastTimeStep).Seconds() * timeMultiplier
 	g.inputMap["time"] += float32(elapsed)
 	g.lastTimeStep = nt
