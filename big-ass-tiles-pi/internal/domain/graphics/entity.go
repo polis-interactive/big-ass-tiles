@@ -113,7 +113,10 @@ func (g *graphics) stepTime() {
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	nt := time.Now()
-	timeMultiplier := 8.0*math.Pow(g.speed, 3.0) - 6.0*math.Pow(g.speed, 2.0) + 3.0*g.speed
+	timeMultiplier := 32.0*math.Pow(g.speed, 4.0) -
+		(45+1/3)*math.Pow(g.speed, 3.0) +
+		20*math.Pow(g.speed, 2.0) -
+		(1+2/3)*g.speed
 	elapsed := nt.Sub(g.lastTimeStep).Seconds() * timeMultiplier
 	g.inputMap["time"] += float32(elapsed)
 	g.lastTimeStep = nt
