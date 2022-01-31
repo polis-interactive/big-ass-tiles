@@ -66,7 +66,7 @@ void main(void)
     float mod_offset = mod(uv_grid.x + uv_grid.y, 2.0) * separation;
 
 
-    float pct = - pow(sin(mod_offset + separation + time / 2.0), 2.0) + time / 10.0;
+    float pct = - pow(sin(mod_offset + time / 2.0), 2.0) + time / 10.0;
 
     pct = pow(sin(pct), 2.0) * 0.5 + 0.1;
 
