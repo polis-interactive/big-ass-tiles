@@ -58,14 +58,14 @@ func windowKeyCallback(
 }
 
 func newProgram(fileBase string, width float32, height float32) (*program, error) {
-	vertexShader, err := newShaderFromFile(fileBase+".vert", gles2.VERTEX_SHADER)
-	if err != nil {
-		log.Println("Couldn't compile vertex shader")
-		return nil, err
-	}
 	fragmentShader, err := newShaderFromFile(fileBase+".frag", gles2.FRAGMENT_SHADER)
 	if err != nil {
 		log.Println("Couldn't compile fragment shader")
+		return nil, err
+	}
+	vertexShader, err := newShaderFromFile(fileBase+".vert", gles2.VERTEX_SHADER)
+	if err != nil {
+		log.Println("Couldn't compile vertex shader")
 		return nil, err
 	}
 	prog := &program{
