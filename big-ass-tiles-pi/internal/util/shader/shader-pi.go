@@ -146,10 +146,13 @@ func (p *program) setUniform2fv(name string, value []float32, count int32) {
 }
 
 func newShaderFromFile(file string, sType uint32) (*shader, error) {
+	log.Println("where")
 	src, err := ioutil.ReadFile(file)
+	log.Println("do")
 	if err != nil {
 		return nil, err
 	}
+	log.Println("i")
 	handle := gles2.CreateShader(sType)
 	srcStr := string(src) + "\x00"
 	log.Println(srcStr)
