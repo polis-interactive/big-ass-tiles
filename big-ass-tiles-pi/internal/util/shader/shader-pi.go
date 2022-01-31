@@ -146,26 +146,18 @@ func (p *program) setUniform2fv(name string, value []float32, count int32) {
 }
 
 func newShaderFromFile(file string, sType uint32) (*shader, error) {
-	log.Println("where")
 	src, err := ioutil.ReadFile(file)
-	log.Println("do")
 	if err != nil {
 		return nil, err
 	}
-	log.Println("i")
 	handle := gles2.CreateShader(sType)
 	srcStr := string(src) + "\x00"
-	log.Println(srcStr)
 	glSrc, freeFn := gles2.Strs(srcStr)
-	log.Println("yolo")
 	defer freeFn()
 	gles2.ShaderSource(handle, 1, glSrc, nil)
-	log.Println("solo")
 	gles2.CompileShader(handle)
-	log.Println("nolo")
 	err = getGlError(handle, gles2.COMPILE_STATUS, gles2.GetShaderiv, gles2.GetShaderInfoLog,
 		"SHADER::COMPILE_FAILURE::"+file+"\x00")
-	log.Println("folo")
 	if err != nil {
 		return nil, err
 	}
@@ -249,7 +241,7 @@ func getGlError(glHandle uint32, checkTrueParam uint32, getObjIvFn getObjIv,
 		var logLength int32
 		getObjIvFn(glHandle, gles2.INFO_LOG_LENGTH, &logLength)
 
-		outMsg := gles2.Str(strings.Repeat("\x00", int(logLength)))
+		outMsg := gles2.Str(strings.Repeat("\x00", int(logLength+1)))
 		getObjInfoLogFn(glHandle, logLength, nil, outMsg)
 
 		return fmt.Errorf("%s: %s", failMsg, gles2.GoStr(outMsg))
