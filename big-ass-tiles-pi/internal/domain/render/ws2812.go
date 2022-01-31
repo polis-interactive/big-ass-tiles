@@ -11,11 +11,10 @@ import (
 
 type ws2812Render struct {
 	*baseRender
-	brightness uint8
-	channel    int
-	options    *ws2811.Option
-	strip      *ws2811.WS2811
-	mapLed     [][][]int
+	channel int
+	options *ws2811.Option
+	strip   *ws2811.WS2811
+	mapLed  [][][]int
 }
 
 var _ render = (*ws2812Render)(nil)
@@ -29,7 +28,7 @@ func newWs2812Render(base *baseRender, cfg ws2812RenderConfig) *ws2812Render {
 	options := ws2811.DefaultOptions
 	options.Channels[0].GpioPin = int(pinNumber)
 	options.Channels[0].StripeType = int(cfg.GetStripType())
-	options.Channels[0].Brightness = 0
+	options.Channels[0].Brightness = 255
 	options.Channels[0].Gamma = nil
 	options.Channels[0].LedCount = base.grid.Rows * base.grid.Columns * base.grid.LedPerCell
 	channel := 0
@@ -46,7 +45,6 @@ func newWs2812Render(base *baseRender, cfg ws2812RenderConfig) *ws2812Render {
 
 	r := &ws2812Render{
 		baseRender: base,
-		brightness: 0,
 		options:    &options,
 		channel:    channel,
 		strip:      nil,
