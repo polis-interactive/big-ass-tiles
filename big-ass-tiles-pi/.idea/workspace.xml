@@ -5,15 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/gui.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/render/bus.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/bus.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/render/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/render/window.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/infrastructure/bus/render.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/infrastructure/bus/render.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/util/shader/shader-pi.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/shader/shader-pi.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" afterDir="false" />
     </list>
