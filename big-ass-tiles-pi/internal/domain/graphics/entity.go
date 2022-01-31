@@ -162,7 +162,6 @@ func (g *graphics) runGraphicsLoop() error {
 					return nil
 				}
 			case <-ticker.C:
-				log.Println("running")
 				g.stepTime()
 				if g.reloadOnUpdate {
 					err = g.gs.ReloadShader()

@@ -112,6 +112,7 @@ func (p *program) runProgram(uniforms map[string]float32, mu *sync.RWMutex) erro
 	p.use()
 	p.setUniform2fv("resolution", []float32{p.width, p.height}, 1)
 	mu.RLock()
+	log.Println(uniforms)
 	for u, v := range uniforms {
 		p.setUniform1f(u, v)
 	}

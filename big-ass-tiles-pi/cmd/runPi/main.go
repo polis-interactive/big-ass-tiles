@@ -53,7 +53,7 @@ func main() {
 			ReloadOnUpdate: false,
 			DisplayOutput:  false,
 			PixelSize:      1,
-			Frequency:      33 * time.Millisecond,
+			Frequency:      1 * time.Second,
 		},
 		RenderConfig: &application.RenderConfig{
 			RenderType:      domain.RenderTypes.WS2812,
