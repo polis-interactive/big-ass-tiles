@@ -20,7 +20,7 @@ type graphics struct {
 	pb                *util.PixelBuffer
 	mu                *sync.RWMutex
 	wg                *sync.WaitGroup
-	inputTypes        []domain.InputType
+	inputMap          map[string]float32
 	shutdowns         chan struct{}
 }
 
@@ -36,6 +36,16 @@ func newGraphics(cfg Config) (*graphics, error) {
 	if !cfg.GetGraphicsDisplayOutput() {
 		pixelSize = 1
 	}
+
+	inputs := cfg.GetInputTypes()
+	inputMap := make(map[string]float32)
+	for _, input := range inputs {
+		if input == domain.InputTypes.SPEED {
+			continue
+		}
+		inputMap[string(input)] = 0.0
+	}
+
 	return &graphics{
 		grid:              cfg.GetGridDefinition(),
 		fileHandle:        fileHandle,
@@ -46,7 +56,7 @@ func newGraphics(cfg Config) (*graphics, error) {
 		pb:                nil,
 		mu:                &sync.RWMutex{},
 		wg:                &sync.WaitGroup{},
-		inputTypes:        cfg.GetInputTypes(),
+		inputMap:          inputMap,
 	}, nil
 }
 
@@ -110,12 +120,7 @@ func (g *graphics) runGraphicsLoop() error {
 	g.pb.RawHeight = g.grid.Rows
 	g.mu.Unlock()
 
-	inputMap := make(map[string]float32)
-	for _, input := range g.inputTypes {
-		inputMap[string(input)] = 0.0
-	}
-
-	gs, err := shader.NewGraphicsShader(g.fileHandle, gridWidth, gridHeight, inputMap)
+	gs, err := shader.NewGraphicsShader(g.fileHandle, gridWidth, gridHeight, g.inputMap)
 	if err != nil {
 		return err
 	}

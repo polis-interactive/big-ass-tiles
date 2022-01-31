@@ -59,9 +59,12 @@ func (s *service) Shutdown() {
 func (s *service) HandleInputChange(state *domain.InputState) {
 	s.graphics.mu.Lock()
 	defer s.graphics.mu.Unlock()
-	if s.graphics.gs != nil {
-		s.graphics.gs.UpdateUniform(string(state.InputType), float32(state.InputValue))
+	log.Println(state)
+	if state.InputType == domain.InputTypes.SPEED {
+		// handle locally
+		return
 	}
+	s.graphics.inputMap[string(state.InputType)] = float32(state.InputValue)
 }
 
 func (s *service) GetPb() (pb *util.PixelBuffer, preLockedMutex *sync.RWMutex) {

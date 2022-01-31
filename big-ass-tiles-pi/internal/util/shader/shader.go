@@ -114,10 +114,6 @@ func (gs *GraphicsShader) ReloadShader() error {
 	return nil
 }
 
-func (gs *GraphicsShader) UpdateUniform(name string, value float32) {
-	gs.uniformDict[name] = value
-}
-
 func (gs *GraphicsShader) RunShader() error {
 
 	if gs.window.ShouldClose() {
