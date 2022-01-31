@@ -30,6 +30,7 @@ func newAdcController(c *Controller, cfg AdcConfig) (*adcController, error) {
 	inputStates := make([]domain.InputState, len(inputPins))
 	for i, inputPin := range inputPins {
 		inputStates[i].InputType = inputPin.InputType
+		inputStates[i].InputValue = -1.0
 	}
 	c.inputStates = inputStates
 
