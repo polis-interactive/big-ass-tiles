@@ -132,7 +132,7 @@ CloseWs2812Loop:
 }
 
 func (r *ws2812Render) runRender() error {
-	err := r.bus.CopyLightsToUint32Buffer(r.strip.Leds(r.channel))
+	err := r.bus.CopyLightsToUint32Buffer(r.mapLed, r.strip.Leds(r.channel))
 	if err != nil {
 		return err
 	}

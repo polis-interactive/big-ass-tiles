@@ -6,5 +6,5 @@ import (
 
 type Bus interface {
 	CopyLightsToColorBuffer(buff [][]util.Color) error
-	CopyLightsToUint32Buffer(buff []uint32) error
+	CopyLightsToUint32Buffer(mapLed [][][]int, buff []uint32) error
 }

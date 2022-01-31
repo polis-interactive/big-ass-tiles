@@ -21,19 +21,21 @@ func (b *bus) CopyLightsToColorBuffer(rawPbOut [][]util.Color) error {
 	return nil
 }
 
-func (b *bus) CopyLightsToUint32Buffer(rawUint32BuffOut []uint32) error {
+func (b *bus) CopyLightsToUint32Buffer(pixelToLedMap [][][]int, rawUint32Buff []uint32) error {
 	pbIn, preLockedGraphicsMutex := b.graphicsService.GetPb()
 	defer func(graphicsMu *sync.RWMutex) {
 		graphicsMu.RUnlock()
 	}(preLockedGraphicsMutex)
-	height := pbIn.Height
+
 	for i := 0; i < pbIn.RawWidth; i++ {
 		for j := 0; j < pbIn.RawHeight; j++ {
-			pos := j + height*i
-			rawUint32BuffOut[pos] = pbIn.GetPixelPointer(&util.Point{
+			cOut := pbIn.GetPixelPointer(&util.Point{
 				X: i,
 				Y: j,
 			}).ToBits()
+			for _, k := range pixelToLedMap[i][j] {
+				rawUint32Buff[k] = cOut
+			}
 		}
 	}
 	return nil
