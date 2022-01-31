@@ -38,8 +38,6 @@ type windowProxy struct {
 }
 
 func newWindow(shaderPath string, width int, height int) (*windowProxy, error) {
-	glfw.WindowHint(glfw.ClientAPI, glfw.OpenGLESAPI)
-	glfw.WindowHint(glfw.ContextCreationAPI, glfw.EGLContextAPI)
 	glfw.WindowHint(glfw.Resizable, glfw.False)
 	_, name := filepath.Split(shaderPath)
 	window, err := glfw.CreateWindow(width, height, name, nil, nil)
@@ -58,14 +56,14 @@ func windowKeyCallback(
 }
 
 func newProgram(fileBase string, width float32, height float32) (*program, error) {
-	fragmentShader, err := newShaderFromFile(fileBase+".frag", gles2.FRAGMENT_SHADER)
-	if err != nil {
-		log.Println("Couldn't compile fragment shader")
-		return nil, err
-	}
 	vertexShader, err := newShaderFromFile(fileBase+".vert", gles2.VERTEX_SHADER)
 	if err != nil {
 		log.Println("Couldn't compile vertex shader")
+		return nil, err
+	}
+	fragmentShader, err := newShaderFromFile(fileBase+".frag", gles2.FRAGMENT_SHADER)
+	if err != nil {
+		log.Println("Couldn't compile fragment shader")
 		return nil, err
 	}
 	prog := &program{
@@ -110,14 +108,11 @@ func (p *program) link() error {
 		"PROGRAM::LINKING_FAILURE")
 }
 
-func (p *program) runProgram(start time.Time, uniformDict map[string]float32) error {
+func (p *program) runProgram(start time.Time) error {
 	p.use()
 	duration := time.Since(start)
 	p.setUniform1f("time", float32(duration.Seconds()))
 	p.setUniform2fv("resolution", []float32{p.width, p.height}, 1)
-	for u, v := range uniformDict {
-		p.setUniform1f(u, v)
-	}
 	gles2.BindVertexArray(p.rectHandle)
 	gles2.DrawElements(gles2.TRIANGLE_FAN, 4, gles2.UNSIGNED_INT, unsafe.Pointer(nil))
 	gles2.BindVertexArray(0)
@@ -239,7 +234,7 @@ func getGlError(glHandle uint32, checkTrueParam uint32, getObjIvFn getObjIv,
 		var logLength int32
 		getObjIvFn(glHandle, gles2.INFO_LOG_LENGTH, &logLength)
 
-		outMsg := gles2.Str(strings.Repeat("\x00", int(logLength+1)))
+		outMsg := gles2.Str(strings.Repeat("\x00", int(logLength)))
 		getObjInfoLogFn(glHandle, logLength, nil, outMsg)
 
 		return fmt.Errorf("%s: %s", failMsg, gles2.GoStr(outMsg))
