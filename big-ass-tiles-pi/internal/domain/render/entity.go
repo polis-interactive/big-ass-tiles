@@ -45,7 +45,6 @@ func newRender(cfg Config, bus Bus) (render, error) {
 
 	switch cfg.GetRenderType() {
 	case domain.RenderTypes.WINDOW:
-		r = newWindowRender(base, cfg)
 	case domain.RenderTypes.WS2812:
 		r = newWs2812Render(base, cfg)
 	case domain.RenderTypes.TERMINAL:

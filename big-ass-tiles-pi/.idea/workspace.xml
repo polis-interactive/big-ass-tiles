@@ -5,6 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/control/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/control/gui.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/render/bus.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/bus.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/render/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/render/window.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/infrastructure/bus/render.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/infrastructure/bus/render.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/util/shader/shader-pi.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/shader/shader-pi.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" afterDir="false" />
     </list>
@@ -31,7 +40,6 @@
     <setting file="file://$PROJECT_DIR$/cmd/testGui/main.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/go.mod" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/go/pkg/mod/fyne.io/fyne/v2@v2.1.2/internal/driver/glfw/driver.go" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/internal/domain/control/gui.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/internal/domain/control/entity.go" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -76,6 +84,15 @@
       <kind value="FILE" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/runPi" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="big-ass-tiles-pi" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/runPi" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/cmd/runPi/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/runWindows" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -124,6 +141,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/runWindows" />
+        <item itemvalue="Go Build.go build github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/runPi" />
         <item itemvalue="Makefile Target.compile" />
         <item itemvalue="Go Build.go build github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/testGui" />
         <item itemvalue="Go Build.go build github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/cmd/testGo" />

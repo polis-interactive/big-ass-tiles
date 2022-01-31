@@ -35,7 +35,6 @@ func newController(cfg Config, bus Bus) (*Controller, error) {
 	var err error = nil
 	switch cfg.GetControlType() {
 	case domain.ControlTypes.GUI:
-		base.impl = newGuiController(base, cfg)
 	case domain.ControlTypes.ADC:
 		base.impl, err = newAdcController(base, cfg)
 	case domain.ControlTypes.GRPC:
