@@ -108,11 +108,14 @@ func (p *program) link() error {
 		"PROGRAM::LINKING_FAILURE")
 }
 
-func (p *program) runProgram(start time.Time) error {
+func (p *program) runProgram(start time.Time, uniforms map[string]float32) error {
 	p.use()
 	duration := time.Since(start)
 	p.setUniform1f("time", float32(duration.Seconds()))
 	p.setUniform2fv("resolution", []float32{p.width, p.height}, 1)
+	for u, v := range uniforms {
+		p.setUniform1f(u, v)
+	}
 	gles2.BindVertexArray(p.rectHandle)
 	gles2.DrawElements(gles2.TRIANGLE_FAN, 4, gles2.UNSIGNED_INT, unsafe.Pointer(nil))
 	gles2.BindVertexArray(0)
