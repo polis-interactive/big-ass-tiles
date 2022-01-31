@@ -62,7 +62,7 @@ func (s *service) HandleInputChange(state *domain.InputState) {
 	}
 	s.graphics.mu.Lock()
 	defer s.graphics.mu.Unlock()
-
+	log.Println(state)
 	if state.InputType == domain.InputTypes.SPEED {
 		s.graphics.speed = state.InputValue
 		return

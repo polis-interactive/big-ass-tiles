@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/internal/util/shader/shader-pi.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/shader/shader-pi.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
