@@ -107,12 +107,14 @@ func (p *program) link() error {
 		"PROGRAM::LINKING_FAILURE")
 }
 
-func (p *program) runProgram(uniforms map[string]float32) error {
+func (p *program) runProgram(uniforms map[string]float32, mu *sync.RWMutex) error {
 	p.use()
 	p.setUniform2fv("resolution", []float32{p.width, p.height}, 1)
+	mu.RLock()
 	for u, v := range uniforms {
 		p.setUniform1f(u, v)
 	}
+	mu.RUnlock()
 	gles2.BindVertexArray(p.rectHandle)
 	gles2.DrawElements(gles2.TRIANGLE_FAN, 4, gles2.UNSIGNED_INT, unsafe.Pointer(nil))
 	gles2.BindVertexArray(0)
