@@ -11,7 +11,7 @@ import (
 	"log"
 	"path/filepath"
 	"strings"
-	"time"
+	"sync"
 	"unsafe"
 )
 
@@ -108,14 +108,14 @@ func (p *program) link() error {
 		"PROGRAM::LINKING_FAILURE")
 }
 
-func (p *program) runProgram(start time.Time, uniformDict map[string]float32) error {
+func (p *program) runProgram(uniformDict map[string]float32, mu *sync.RWMutex) error {
 	p.use()
-	duration := time.Since(start)
-	p.setUniform1f("time", float32(duration.Seconds()))
 	p.setUniform2fv("resolution", []float32{p.width, p.height}, 1)
+	mu.RLock()
 	for u, v := range uniformDict {
 		p.setUniform1f(u, v)
 	}
+	mu.RUnlock()
 	gl.BindVertexArray(p.rectHandle)
 	gl.DrawElements(gl.TRIANGLE_FAN, 4, gl.UNSIGNED_INT, unsafe.Pointer(nil))
 	gl.BindVertexArray(0)
@@ -137,7 +137,7 @@ func (p *program) setUniform2fv(name string, value []float32, count int32) {
 	chars := []uint8(name)
 	loc := gl.GetUniformLocation(p.handle, &chars[0])
 	if loc == -1 {
-		log.Println(fmt.Sprintf("Couldn't find uniform 2f %s", name))
+		// log.Println(fmt.Sprintf("Couldn't find uniform 2f %s", name))
 		return
 	}
 	gl.Uniform2fv(loc, count, &value[0])

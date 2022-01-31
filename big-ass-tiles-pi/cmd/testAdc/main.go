@@ -39,11 +39,11 @@ func (t testAdcConfig) GetInputPins() []domain.InputPin {
 			Pin:       ads1x15.Channel1,
 		},
 		{
-			InputType: domain.InputTypes.ATTACK,
+			InputType: domain.InputTypes.PROGRAM,
 			Pin:       ads1x15.Channel2,
 		},
 		{
-			InputType: domain.InputTypes.DECAY,
+			InputType: domain.InputTypes.VALUE,
 			Pin:       ads1x15.Channel3,
 		},
 	}

@@ -38,9 +38,9 @@ func (t testGuiConfig) GetControlType() domain.ControlType {
 func (t testGuiConfig) GetInputTypes() []domain.InputType {
 	return []domain.InputType{
 		domain.InputTypes.BRIGHTNESS,
-		domain.InputTypes.ATTACK,
+		domain.InputTypes.PROGRAM,
 		domain.InputTypes.SPEED,
-		domain.InputTypes.DECAY,
+		domain.InputTypes.VALUE,
 	}
 }
 

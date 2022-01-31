@@ -41,8 +41,8 @@ func main() {
 		InputTypes: []domain.InputType{
 			domain.InputTypes.BRIGHTNESS,
 			domain.InputTypes.SPEED,
-			domain.InputTypes.ATTACK,
-			domain.InputTypes.DECAY,
+			domain.InputTypes.PROGRAM,
+			domain.InputTypes.VALUE,
 		},
 	}
 

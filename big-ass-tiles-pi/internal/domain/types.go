@@ -58,22 +58,22 @@ type ControlService interface {
 type InputType string
 
 const (
-	brightnessInput InputType = "Brightness"
-	attackInput               = "Attack"
-	speedInput                = "Speed"
-	decayInput                = "Decay"
+	brightness InputType = "brightness"
+	program              = "program"
+	speed                = "speed"
+	value                = "value"
 )
 
 var InputTypes = struct {
 	BRIGHTNESS InputType
-	ATTACK     InputType
+	PROGRAM    InputType
 	SPEED      InputType
-	DECAY      InputType
+	VALUE      InputType
 }{
-	BRIGHTNESS: brightnessInput,
-	ATTACK:     attackInput,
-	SPEED:      speedInput,
-	DECAY:      decayInput,
+	BRIGHTNESS: brightness,
+	PROGRAM:    program,
+	SPEED:      speed,
+	VALUE:      value,
 }
 
 type InputPin struct {

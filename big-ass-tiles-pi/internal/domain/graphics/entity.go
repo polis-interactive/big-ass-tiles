@@ -6,6 +6,7 @@ import (
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util"
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util/shader"
 	"log"
+	"math"
 	"sync"
 	"time"
 )
@@ -20,6 +21,8 @@ type graphics struct {
 	pb                *util.PixelBuffer
 	mu                *sync.RWMutex
 	wg                *sync.WaitGroup
+	lastTimeStep      time.Time
+	speed             float64
 	inputMap          map[string]float32
 	shutdowns         chan struct{}
 }
@@ -106,6 +109,16 @@ CloseMainLoop:
 	g.wg.Done()
 }
 
+func (g *graphics) stepTime() {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	nt := time.Now()
+	timeMultiplier := 0.1 * math.Pow(100, g.speed)
+	elapsed := nt.Sub(g.lastTimeStep).Seconds() * timeMultiplier
+	g.inputMap["time"] += float32(elapsed)
+	g.lastTimeStep = nt
+}
+
 func (g *graphics) runGraphicsLoop() error {
 
 	gridWidth := g.grid.Columns
@@ -120,7 +133,10 @@ func (g *graphics) runGraphicsLoop() error {
 	g.pb.RawHeight = g.grid.Rows
 	g.mu.Unlock()
 
-	gs, err := shader.NewGraphicsShader(g.fileHandle, gridWidth, gridHeight, g.inputMap)
+	g.lastTimeStep = time.Now()
+	g.inputMap["time"] = 0.0
+
+	gs, err := shader.NewGraphicsShader(g.fileHandle, gridWidth, gridHeight, g.inputMap, g.mu)
 	if err != nil {
 		return err
 	}
@@ -146,6 +162,7 @@ func (g *graphics) runGraphicsLoop() error {
 					return nil
 				}
 			case <-ticker.C:
+				g.stepTime()
 				if g.reloadOnUpdate {
 					err = g.gs.ReloadShader()
 					if err != nil {
@@ -156,9 +173,9 @@ func (g *graphics) runGraphicsLoop() error {
 				if err != nil {
 					return err
 				}
-				g.mu.Lock()
+				g.mu.RLock()
 				err = gs.ReadToPixels(g.pb.GetUnsafePointer())
-				g.mu.Unlock()
+				g.mu.RUnlock()
 				if err != nil {
 					return err
 				}

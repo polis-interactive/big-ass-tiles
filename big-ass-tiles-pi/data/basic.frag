@@ -17,9 +17,10 @@ precision highp float;
 uniform float time;
 uniform vec2 resolution;
 
-uniform float Brightness;
-uniform float Attack;
-uniform float Decay;
+uniform float program;
+uniform float value;
+uniform float brightness;
+
 
 vec3 rgb2hsb( in vec3 c ){
     vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
@@ -59,15 +60,17 @@ void main(void)
 
     vec2 uv_grid = floor(vec2(uv.x * 11.0, uv.y * 3.0));
 
-    float mod_offset = mod(uv_grid.x + uv_grid.y, 2.0);
 
-    float separation = (Decay * 0.5) * 2.0 * 3.14159;
+    float separation = (value * 0.5) * 2.0 * 3.14159 + 1.0;
 
-    float pct = - pow(sin(mod_offset + time / 2.0), 2.0) + time / 10.0;
+    float mod_offset = mod(uv_grid.x + uv_grid.y, 2.0) * separation;
+
+
+    float pct = - pow(sin(mod_offset + separation + time / 2.0), 2.0) + time / 10.0;
 
     pct = pow(sin(pct), 2.0) * 0.5 + 0.1;
 
-    color = hsb2rgb(vec3(pct,1.0,Brightness));
+    color = hsb2rgb(vec3(pct,1.0,brightness));
 
     gl_FragColor = vec4(color, 1.0);
 }

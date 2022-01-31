@@ -37,15 +37,15 @@ func main() {
 					Pin:       ads1x15.Channel1,
 				},
 				{
-					InputType: domain.InputTypes.ATTACK,
+					InputType: domain.InputTypes.PROGRAM,
 					Pin:       ads1x15.Channel2,
 				},
 				{
-					InputType: domain.InputTypes.DECAY,
+					InputType: domain.InputTypes.VALUE,
 					Pin:       ads1x15.Channel3,
 				},
 			},
-			ReadFrequency: physic.Hertz * 20,
+			ReadFrequency: physic.Hertz * 33,
 			ReadVoltage:   physic.MilliVolt * 3300,
 		},
 		GraphicsConfig: &application.GraphicsConfig{

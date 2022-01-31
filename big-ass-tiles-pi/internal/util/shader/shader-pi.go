@@ -11,7 +11,6 @@ import (
 	"log"
 	"path/filepath"
 	"strings"
-	"time"
 	"unsafe"
 )
 
@@ -108,10 +107,8 @@ func (p *program) link() error {
 		"PROGRAM::LINKING_FAILURE")
 }
 
-func (p *program) runProgram(start time.Time, uniforms map[string]float32) error {
+func (p *program) runProgram(uniforms map[string]float32) error {
 	p.use()
-	duration := time.Since(start)
-	p.setUniform1f("time", float32(duration.Seconds()))
 	p.setUniform2fv("resolution", []float32{p.width, p.height}, 1)
 	for u, v := range uniforms {
 		p.setUniform1f(u, v)
@@ -127,7 +124,7 @@ func (p *program) setUniform1f(name string, value float32) {
 	chars := []uint8(name)
 	loc := gles2.GetUniformLocation(p.handle, &chars[0])
 	if loc == -1 {
-		log.Println(fmt.Sprintf("Couldn't find uniform 1f %s", name))
+		// log.Println(fmt.Sprintf("Couldn't find uniform 1f %s", name))
 		return
 	}
 	gles2.Uniform1f(loc, value)
@@ -137,7 +134,7 @@ func (p *program) setUniform2fv(name string, value []float32, count int32) {
 	chars := []uint8(name)
 	loc := gles2.GetUniformLocation(p.handle, &chars[0])
 	if loc == -1 {
-		log.Println(fmt.Sprintf("Couldn't find uniform 2f %s", name))
+		// log.Println(fmt.Sprintf("Couldn't find uniform 2f %s", name))
 		return
 	}
 	gles2.Uniform2fv(loc, count, &value[0])

@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
-	"time"
+	"sync"
 )
 
 func GetShaderQualifiedPath(shaderName string, programName string) (string, error) {
@@ -49,10 +49,12 @@ type GraphicsShader struct {
 	window      *windowProxy
 	program     *program
 	uniformDict map[string]float32
-	startTime   time.Time
+	mu          *sync.RWMutex
 }
 
-func NewGraphicsShader(shaderPath string, width int, height int, uniforms map[string]float32) (*GraphicsShader, error) {
+func NewGraphicsShader(
+	shaderPath string, width int, height int, uniforms map[string]float32, mu *sync.RWMutex,
+) (*GraphicsShader, error) {
 
 	runtime.LockOSThread()
 
@@ -60,7 +62,7 @@ func NewGraphicsShader(shaderPath string, width int, height int, uniforms map[st
 		shaderPath: shaderPath,
 		width:      int32(width),
 		height:     int32(height),
-		startTime:  time.Now(),
+		mu:         mu,
 	}
 
 	gs.uniformDict = uniforms
@@ -122,7 +124,7 @@ func (gs *GraphicsShader) RunShader() error {
 
 	stepGraphics()
 
-	err := gs.program.runProgram(gs.startTime, gs.uniformDict)
+	err := gs.program.runProgram(gs.uniformDict, gs.mu)
 	if err != nil {
 		return errors.New("shader failed")
 	}
