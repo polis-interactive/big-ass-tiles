@@ -31,7 +31,7 @@ void main(void)
 
     vec2 uv_grid = floor(vec2(uv.x * 11.0, uv.y * 3.0)) / vec2(11.0, 3.0);
 
-    vec3 color = vec3(uv_grid.x, uv_grid.y, sin(t));
+    vec3 color = vec3(sin(t + 2.0 * uv_grid.x), uv_grid.y, sin(t));
 
     gl_FragColor = vec4(color, 1.0);
 }

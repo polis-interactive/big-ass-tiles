@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/render/bus.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/bus.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/render/ws2812.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/render/ws2812.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/infrastructure/bus/render.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/infrastructure/bus/render.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/merge.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/basic.frag" beforeDir="false" afterPath="$PROJECT_DIR$/data/basic.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/infrastructure/bus/bus.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/infrastructure/bus/bus.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -28,9 +28,9 @@ func (b *bus) BindGraphicsService(g domain.GraphicsService) {
 }
 
 func (b *bus) Startup() {
-	b.graphicsService.Startup()
-	time.Sleep(20 * time.Millisecond)
 	b.controlService.Startup()
+	time.Sleep(20 * time.Millisecond)
+	b.graphicsService.Startup()
 	time.Sleep(20 * time.Millisecond)
 	b.renderService.Startup()
 }
