@@ -66,6 +66,9 @@ func (s *service) HandleInputChange(state *domain.InputState) {
 		s.graphics.speed = state.InputValue
 		return
 	} else if state.InputType == domain.InputTypes.PROGRAM {
+		if s.graphics.gs == nil {
+			return
+		}
 		programCount := float64(len(s.graphics.shaderFiles))
 		if programCount == 1 {
 			return
