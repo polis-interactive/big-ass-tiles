@@ -49,7 +49,10 @@ func main() {
 			ReadVoltage:   physic.MilliVolt * 3300,
 		},
 		GraphicsConfig: &application.GraphicsConfig{
-			ShaderName:     "basic",
+			ShaderFiles: []string{
+				"checkerboard", "stripe-wheel-spread",
+				"bar-hoppin",
+			},
 			ReloadOnUpdate: false,
 			DisplayOutput:  false,
 			PixelSize:      1,

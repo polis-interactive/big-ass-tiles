@@ -5,32 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data/stripe-wheel-spread.frag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/stripe-wheel-spread.vert" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/windows-grpc.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../big-ass-tiles-web-controls/src/api/services.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/control.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/control.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/go/control.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/go/control.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/web/ControlServiceClientPb.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-web-controls/src/api/ControlServiceClientPb.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/web/ParticipantServiceClientPb.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/web/common_pb.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/web/common_pb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/web/control_pb.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-web-controls/src/api/control_pb.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/web/control_pb.js" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-web-controls/src/api/control_pb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/web/participant_pb.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/web/participant_pb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/runWindows/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/runWindows/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/basic.frag" beforeDir="false" afterPath="$PROJECT_DIR$/data/checkerboard.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/basic.vert" beforeDir="false" afterPath="$PROJECT_DIR$/data/checkerboard.vert" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/application/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/application/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/control/grpc/controlServer.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/grpc/controlServer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/runPi/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/runPi/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
