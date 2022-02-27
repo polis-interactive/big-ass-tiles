@@ -22,13 +22,16 @@ func main() {
 		ControlConfig: &application.ControlConfig{
 			ControlType:    domain.ControlTypes.GRPC,
 			InputTolerance: 0.001,
-			GrpcPort:       6969,
+			GrpcPort:       5000,
 		},
 		WindowConfig: &application.WindowConfig{
 			TileSize: 0,
 		},
 		GraphicsConfig: &application.GraphicsConfig{
-			ShaderName:     "basic",
+			ShaderFiles: []string{
+				"checkerboard", "stripe-wheel-spread",
+				"bar-hoppin",
+			},
 			ReloadOnUpdate: true,
 			DisplayOutput:  true,
 			PixelSize:      100,

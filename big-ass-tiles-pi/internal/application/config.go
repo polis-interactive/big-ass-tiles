@@ -82,15 +82,15 @@ func (c *ControlConfig) GetInputTolerance() float64 {
 }
 
 type GraphicsConfig struct {
-	ShaderName     string
+	ShaderFiles    []string
 	DisplayOutput  bool
 	ReloadOnUpdate bool
 	PixelSize      int
 	Frequency      time.Duration
 }
 
-func (g *GraphicsConfig) GetGraphicsShaderName() string {
-	return g.ShaderName
+func (g *GraphicsConfig) GetShaderFiles() []string {
+	return g.ShaderFiles
 }
 
 func (g *GraphicsConfig) GetGraphicsReloadOnUpdate() bool {

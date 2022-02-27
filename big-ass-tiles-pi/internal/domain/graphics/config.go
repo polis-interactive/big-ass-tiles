@@ -7,10 +7,10 @@ import (
 )
 
 type Config interface {
-	GetGraphicsShaderName() string
 	GetGraphicsReloadOnUpdate() bool
 	GetGraphicsDisplayOutput() bool
 	GetGraphicsPixelSize() int
+	GetShaderFiles() []string
 	GetGraphicsFrequency() time.Duration
 	GetGridDefinition() util.GridDefinition
 	GetInputTypes() []domain.InputType

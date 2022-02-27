@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/domain"
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util"
-	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util/shader"
+	"github.com/polis-interactive/go-lighting-utils/pkg/graphicsShader"
 	"log"
 	"math"
 	"sync"
@@ -13,47 +13,42 @@ import (
 
 type graphics struct {
 	grid              util.GridDefinition
-	fileHandle        string
 	reloadOnUpdate    bool
 	pixelSize         int
 	graphicsFrequency time.Duration
-	gs                *shader.GraphicsShader
+	gs                *graphicsShader.GraphicsShader
 	pb                *util.PixelBuffer
 	mu                *sync.RWMutex
 	wg                *sync.WaitGroup
 	lastTimeStep      time.Time
 	speed             float64
-	inputMap          map[string]float32
+	inputMap          graphicsShader.UniformDict
+	shaderFiles       []string
 	shutdowns         chan struct{}
 }
 
 func newGraphics(cfg Config) (*graphics, error) {
 	log.Println("graphics, newGraphics: creating")
-	shaderName := cfg.GetGraphicsShaderName()
-	fileHandle, err := shader.GetShaderQualifiedPath(shaderName, domain.Program)
-	if err != nil {
-		log.Fatalln(fmt.Sprintf("graphics, newGraphics: couldn't find shader %s; %s", shaderName, err.Error()))
-		return nil, err
-	}
 	pixelSize := cfg.GetGraphicsPixelSize()
 	if !cfg.GetGraphicsDisplayOutput() {
 		pixelSize = 1
 	}
 
 	inputs := cfg.GetInputTypes()
-	inputMap := make(map[string]float32)
+	inputMap := make(graphicsShader.UniformDict)
 	for _, input := range inputs {
-		if input == domain.InputTypes.SPEED {
+		if input == domain.InputTypes.SPEED || input == domain.InputTypes.PROGRAM {
 			continue
 		}
-		inputMap[string(input)] = 0.0
+		inputMap[graphicsShader.UniformKey(input)] = 0.0
 	}
+	inputMap["time"] = 0
 
 	return &graphics{
 		grid:              cfg.GetGridDefinition(),
-		fileHandle:        fileHandle,
 		reloadOnUpdate:    cfg.GetGraphicsReloadOnUpdate(),
 		graphicsFrequency: cfg.GetGraphicsFrequency(),
+		shaderFiles:       cfg.GetShaderFiles(),
 		pixelSize:         pixelSize,
 		gs:                nil,
 		pb:                nil,
@@ -139,7 +134,7 @@ func (g *graphics) runGraphicsLoop() error {
 	g.lastTimeStep = time.Now()
 	g.inputMap["time"] = 0.0
 
-	gs, err := shader.NewGraphicsShader(g.fileHandle, gridWidth, gridHeight, g.inputMap, g.mu)
+	gs, err := g.setupGraphicsShader(int32(gridWidth), int32(gridHeight))
 	if err != nil {
 		return err
 	}
@@ -189,4 +184,22 @@ func (g *graphics) runGraphicsLoop() error {
 	g.gs = nil
 	return err
 
+}
+
+func (g *graphics) setupGraphicsShader(width int32, height int32) (*graphicsShader.GraphicsShader, error) {
+	gs, err := graphicsShader.NewGraphicsShader(domain.Program, width, height, g.inputMap, g.mu)
+	if err != nil {
+		return nil, err
+	}
+	for i, s := range g.shaderFiles {
+		err = gs.AttachShader(graphicsShader.ShaderIdentifier{
+			Key:      graphicsShader.ShaderKey(rune(i)),
+			Filename: s,
+		})
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return gs, nil
 }

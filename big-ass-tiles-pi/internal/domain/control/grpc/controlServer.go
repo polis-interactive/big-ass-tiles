@@ -23,6 +23,6 @@ func newParticipantServer(c controller) (*controlServer, error) {
 }
 
 func (c *controlServer) RequestControl(_ context.Context, req *grpcControl.ControlRequest) (*grpcControl.EmptyResponse, error) {
-	c.c.SetInputValue(int(req.ParticipantId), req.Value)
+	c.c.SetInputValue(int(req.Input), req.Value)
 	return &grpcControl.EmptyResponse{}, nil
 }

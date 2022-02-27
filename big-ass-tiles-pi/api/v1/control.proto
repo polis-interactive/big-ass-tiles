@@ -6,7 +6,7 @@ package BigAssTilesPi.v1.control;
 option go_package = "github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/api/v1/go/control;grpcControl";
 
 message ControlRequest {
-  int32 ParticipantId = 1;
+  int32  input = 1;
   double value = 2;
 }
 

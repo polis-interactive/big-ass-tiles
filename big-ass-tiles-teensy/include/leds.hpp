@@ -12,7 +12,7 @@
 #define CORRECTION  TypicalPixelString
 
 // 50 for 20 hz, 33 for 30 hz
-#define LED_REFRESH_MILLIS 50
+#define LED_REFRESH_MILLIS 33
 
 // #define ROWS            3
 // #define COLUMNS         11

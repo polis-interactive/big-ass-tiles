@@ -1,9 +1,12 @@
 package graphics
 
 import (
+	"fmt"
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/domain"
 	"github.com/polis-interactive/big-ass-tiles/big-ass-tiles-pi/internal/util"
+	"github.com/polis-interactive/go-lighting-utils/pkg/graphicsShader"
 	"log"
+	"math"
 	"sync"
 )
 
@@ -48,7 +51,7 @@ func (s *service) Reset() {
 }
 
 func (s *service) Shutdown() {
-	log.Println("RenderService Shutdown: shutting down")
+	log.Println("GraphicsService Shutdown: shutting down")
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if s.graphics != nil {
@@ -57,16 +60,32 @@ func (s *service) Shutdown() {
 }
 
 func (s *service) HandleInputChange(state *domain.InputState) {
-	if state.InputType == domain.InputTypes.PROGRAM {
-		return // doesn't do anything yet
-	}
 	s.graphics.mu.Lock()
 	defer s.graphics.mu.Unlock()
 	if state.InputType == domain.InputTypes.SPEED {
 		s.graphics.speed = state.InputValue
 		return
+	} else if state.InputType == domain.InputTypes.PROGRAM {
+		programCount := float64(len(s.graphics.shaderFiles))
+		if programCount == 1 {
+			return
+		}
+		var programKey graphicsShader.ShaderKey
+		if state.InputValue == 1 {
+			programKey = graphicsShader.ShaderKey(rune(programCount - 1))
+		} else {
+			selectProgram := int(math.Floor(programCount * state.InputValue))
+			programKey = graphicsShader.ShaderKey(rune(selectProgram))
+		}
+		err := s.graphics.gs.SetShader(programKey)
+		if err != nil {
+			log.Println(fmt.Sprintf(
+				"GraphicsService, HandleInputChange - Program: couldn't set to %s with error %s",
+				programKey, err.Error(),
+			))
+		}
 	} else {
-		s.graphics.inputMap[string(state.InputType)] = float32(state.InputValue)
+		s.graphics.inputMap[graphicsShader.UniformKey(state.InputType)] = float32(state.InputValue)
 	}
 }
 

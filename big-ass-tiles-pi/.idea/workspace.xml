@@ -5,7 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87bda0fc-c05f-436b-a941-8ce53bd14cda" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/data/stripe-wheel-spread.frag" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/stripe-wheel-spread.vert" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/windows-grpc.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-ass-tiles-web-controls/src/api/services.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/control.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/control.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/go/control.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/go/control.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/web/ControlServiceClientPb.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-web-controls/src/api/ControlServiceClientPb.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/web/ParticipantServiceClientPb.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/web/common_pb.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/web/common_pb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/web/control_pb.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-web-controls/src/api/control_pb.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/web/control_pb.js" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-web-controls/src/api/control_pb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/web/participant_pb.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/web/participant_pb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/runWindows/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/runWindows/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/basic.frag" beforeDir="false" afterPath="$PROJECT_DIR$/data/checkerboard.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/basic.vert" beforeDir="false" afterPath="$PROJECT_DIR$/data/checkerboard.vert" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/application/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/application/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/control/grpc/controlServer.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/control/grpc/controlServer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/domain/graphics/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/graphics/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/graphics/service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../big-ass-tiles-teensy/include/leds.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,8 +52,18 @@
     <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/go/pkg/mod/github.com/polis-interactive/go-lighting-utils@v0.0.3/pkg/graphicsShader/graphics.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/internal/domain/graphics/entity.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/go/pkg/mod/github.com/polis-interactive/go-lighting-utils@v0.0.3/pkg/graphicsShader/util.go" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/cmd/testGui/main.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/internal/domain/graphics/service.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/go.mod" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/go/pkg/mod/github.com/polis-interactive/go-lighting-utils@v0.0.2/pkg/graphicsShader/graphics.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$USER_HOME$/go/pkg/mod/github.com/polis-interactive/go-lighting-utils@v0.0.4/pkg/graphicsShader/graphics.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/data/stripe-wheel-spread.frag" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/data/bar-hoppin.vert" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/data/bar-hoppin.frag" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/cmd/runWindows/main.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/go/pkg/mod/fyne.io/fyne/v2@v2.1.2/internal/driver/glfw/driver.go" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/internal/domain/control/entity.go" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -53,15 +87,16 @@
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/internal/domain/control" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
+    <property name="ts.external.directory.path" value="C:\Users\bruce\AppData\Local\JetBrains\Toolbox\apps\Goland\ch-0\213.6777.51\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bruce\Documents\polis\2029-BigAssTiles\big-ass-tiles-pi\data" />
+      <recent name="C:\Users\bruce\Documents\polis\2029-BigAssTiles\big-ass-tiles-pi\frontend" />
       <recent name="C:\Users\bruce\Documents\polis\2029-BigAssTiles\big-ass-tiles-pi\internal\domain\control" />
       <recent name="C:\Users\bruce\Documents\polis\2029-BigAssTiles\big-ass-tiles-pi" />
-      <recent name="C:\Users\bruce\Documents\polis\2029-BigAssTiles\big-ass-tiles-pi\data" />
       <recent name="C:\Users\bruce\Documents\polis\2029-BigAssTiles\big-ass-tiles-pi\internal\util" />
-      <recent name="C:\Users\bruce\Documents\polis\2029-BigAssTiles\big-ass-tiles-pi\internal\domain\graphics" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\bruce\Documents\polis\2029-BigAssTiles\big-ass-tiles-pi\internal\domain\graphics" />
