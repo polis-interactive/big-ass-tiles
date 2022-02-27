@@ -50,7 +50,7 @@ vec3 hsb2rgb( in vec3 c ){
 void main(void)
 {
 
-    float t = time * 2.0;
+    float t = time / 2.0;
 
 
 	vec3 color = vec3(0.0);
@@ -65,9 +65,9 @@ void main(void)
     float mod_offset = mod(uv_grid.x + uv_grid.y, 2.0) * separation;
 
 
-    float pct = - pow(sin(mod_offset + time / 2.0), 2.0) + time / 10.0;
+    float pct = - pow(sin(mod_offset + t / 2.0), 2.0) + t / 10.0;
 
-    pct = pow(sin(pct), 2.0) * 0.5 + 0.1;
+    pct = sin(pct);
 
     color = hsb2rgb(vec3(pct,1.0,brightness));
 
