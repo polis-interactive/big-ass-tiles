@@ -103,6 +103,8 @@ github.com/polis-interactive/go-lighting-utils v0.0.3 h1:1NjXXqNqlTnYupF+lAm5AA+
 github.com/polis-interactive/go-lighting-utils v0.0.3/go.mod h1:U8Ta6vNMPtx2XKbleXtTb3kBbkg2HysOG9fbtfrD5kY=
 github.com/polis-interactive/go-lighting-utils v0.0.4 h1:Q7JRln3lC0pHCAB6xBcsCsG2f5VGFykkMHv5dRvazAU=
 github.com/polis-interactive/go-lighting-utils v0.0.4/go.mod h1:U8Ta6vNMPtx2XKbleXtTb3kBbkg2HysOG9fbtfrD5kY=
+github.com/polis-interactive/go-lighting-utils v0.0.5 h1:egsR3FGY32Mq+4bQCBdj+ZRkIZP5eSjS+Q0dkoEnJ4Y=
+github.com/polis-interactive/go-lighting-utils v0.0.5/go.mod h1:U8Ta6vNMPtx2XKbleXtTb3kBbkg2HysOG9fbtfrD5kY=
 github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4/go.mod h1:xMI15A0UPsDsEKsMN9yxemIoYk6Tm2C1GtYGdfGttqA=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
 github.com/rpi-ws281x/rpi-ws281x-go v1.0.8 h1:fyyjhZTi2vq5XR20dvM0VHAIrYePE5R7SssUAgZoHH8=

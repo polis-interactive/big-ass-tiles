@@ -16,7 +16,7 @@
 - Build
   - pull repo, use common key
   - grab only rpi-ws281x, periph
-  - sudo go build ./cmd/runApplication/main.go
+  - sudo go build ./cmd/runPi/main.go
 - Make Service
   - https://superuser.com/questions/544399/how-do-you-make-a-systemd-service-as-the-last-service-on-boot
   - Remove nymea (/lib/systemd/system/nymea) from target graphical to target 
