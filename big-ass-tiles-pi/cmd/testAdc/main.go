@@ -38,15 +38,11 @@ func (t testAdcConfig) GetInputPins() []domain.InputPin {
 			InputType: domain.InputTypes.BRIGHTNESS,
 			Pin:       ads1x15.Channel0,
 		},
-		{
-			InputType: domain.InputTypes.SPEED,
-			Pin:       ads1x15.Channel1,
-		},
 	}
 }
 
 func (t testAdcConfig) GetReadFrequency() physic.Frequency {
-	return physic.Hertz * 20
+	return physic.Hertz * 1
 }
 
 func (t testAdcConfig) GetReadVoltage() physic.ElectricPotential {
