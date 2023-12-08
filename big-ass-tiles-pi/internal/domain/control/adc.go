@@ -85,9 +85,7 @@ func (a *adcController) tryRunMainLoop() error {
 	chIn := make([]chan domain.InputPair, 0)
 	var chAll chan domain.InputPair
 
-	log.Println("Working?")
 	bus, err := i2creg.Open("")
-	log.Println("out?")
 	if err != nil {
 		log.Fatalf("failed to open I²C: %v", err)
 	}
