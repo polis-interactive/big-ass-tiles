@@ -14,6 +14,10 @@ import (
 
 type testAdcConfig struct{}
 
+func (t testAdcConfig) GetGrpcPort() int {
+	return 8008
+}
+
 func (t testAdcConfig) GetInputTolerance() float64 {
 	return 0.001
 }
