@@ -67,21 +67,22 @@ var _ control.Bus = (*testAdcBus)(nil)
 func (t *testAdcBus) HandleControlInputChange(state *domain.InputState) {
 	ip := state.InputType
 	iv := state.InputValue
+	log.Println(fmt.Sprintf("%s: %f", ip, iv))
 	if _, ok := t.minMaxState[ip]; !ok {
 		t.minMaxState[ip] = &inputState{
 			minValue: iv,
 			maxValue: iv,
 		}
-		log.Println(fmt.Sprintf("%s: %f", state.InputType, state.InputValue))
+		// log.Println(fmt.Sprintf("%s: %f", state.InputType, state.InputValue))
 		return
 	}
 	if t.minMaxState[ip].minValue > iv {
 		t.minMaxState[ip].minValue = iv
-		log.Println(fmt.Sprintf("%s:  new min %f", state.InputType, state.InputValue))
+		// log.Println(fmt.Sprintf("%s:  new min %f", state.InputType, state.InputValue))
 	}
 	if t.minMaxState[ip].maxValue < iv {
 		t.minMaxState[ip].maxValue = iv
-		log.Println(fmt.Sprintf("%s:  new max %f", state.InputType, state.InputValue))
+		// log.Println(fmt.Sprintf("%s:  new max %f", state.InputType, state.InputValue))
 	}
 }
 
